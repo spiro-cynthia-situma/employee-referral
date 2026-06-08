@@ -1,0 +1,16 @@
+# Environment — never commit secrets
+.env
+
+# Dependencies
+node_modules/
+
+# Runtime artefacts
+employeereferrals.xlsx
+*.log
+npm-debug.log*
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/

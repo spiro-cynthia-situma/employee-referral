@@ -1,0 +1,1190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spiro — Employee Referral</title>
+    <style>
+      /* ── Brand tokens ─────────────────────────────────────────── */
+      :root {
+        --blue: #2b38f0;
+        --blue-dark: #1e2bc4;
+        --blue-light: #eef0ff;
+        --yellow: #c8f000;
+        --green: #2b38f0;
+        --green-dark: #1e2bc4;
+        --green-light: #eef0ff;
+        --black: #0d0d0d;
+        --surface: #111827;
+        --card: #1c2537;
+        --border: #2a3448;
+        --muted: #6b7a99;
+        --white: #ffffff;
+        --text: #e8ecf4;
+        --text-sub: #9aa5be;
+        --error: #ff4d4f;
+        --radius: 12px;
+        --radius-sm: 8px;
+        --transition: 0.2s ease;
+      }
+ 
+      /* ── Reset & base ─────────────────────────────────────────── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+ 
+      body {
+        font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+        background: var(--black);
+        color: var(--text);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 24px 16px 60px;
+      }
+ 
+      /* ── Ambient gradient ─────────────────────────────────────── */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 60% 40% at 50% 0%,
+            rgba(43, 56, 240, 0.14) 0%,
+            transparent 70%
+          ),
+          var(--black);
+        pointer-events: none;
+        z-index: 0;
+      }
+ 
+      /* ── Layout wrapper ───────────────────────────────────────── */
+      .wrapper {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 560px;
+      }
+ 
+      /* ── Header ───────────────────────────────────────────────── */
+      .brand-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 32px;
+      }
+ 
+      .logo-lockup {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+ 
+      .spiro-logo {
+        height: 56px;
+        width: auto;
+        display: block;
+      }
+ 
+      .tagline {
+        font-size: 13px;
+        color: var(--text-sub);
+        text-align: center;
+        max-width: 320px;
+        line-height: 1.5;
+      }
+ 
+      /* ── Card ─────────────────────────────────────────────────── */
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+      }
+ 
+      /* ── Card hero ────────────────────────────────────────────── */
+      .card-hero {
+        background: linear-gradient(135deg, #2b38f000 0%, #2b38f022 100%);
+        border-bottom: 1px solid var(--border);
+        padding: 28px 28px 24px;
+      }
+ 
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(200, 240, 0, 0.15);
+        border: 1px solid rgba(200, 240, 0, 0.35);
+        color: var(--yellow);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+      }
+ 
+      .hero-eyebrow::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: var(--yellow);
+        border-radius: 50%;
+        animation: pulse 1.8s ease-in-out infinite;
+      }
+ 
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.4;
+          transform: scale(0.7);
+        }
+      }
+ 
+      .card-hero h1 {
+        font-size: clamp(20px, 5vw, 26px);
+        font-weight: 800;
+        color: var(--white);
+        line-height: 1.2;
+        letter-spacing: -0.3px;
+        margin-bottom: 8px;
+      }
+ 
+      .card-hero h1 .accent {
+        color: var(--yellow);
+      }
+ 
+      .card-hero p {
+        font-size: 14px;
+        color: var(--text-sub);
+        line-height: 1.55;
+      }
+ 
+      /* ── Form body ────────────────────────────────────────────── */
+      .card-body {
+        padding: 28px;
+      }
+ 
+      /* ── Section header ───────────────────────────────────────── */
+      .section-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+ 
+      .section-label + .field-group + .section-label {
+        margin-top: 32px;
+      }
+ 
+      .section-num {
+        width: 26px;
+        height: 26px;
+        background: var(--blue);
+        color: var(--white);
+        border-radius: 50%;
+        font-size: 12px;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+ 
+      .section-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--white);
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+      }
+
+        select,
+    #userType,
+#bikeNumber {
+  width: 100%;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--white);
+  font-size: 16px;
+  padding: 13px 14px;
+  outline: none;
+  margin-top: 5px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+ 
+/* dropdown options */
+#userType option {
+  background: var(--card);
+  color: var(--white);
+}
+ 
+/* focus effect same as rest of form */
+#userType:focus,
+#bikeNumber:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(43, 56, 240, 0.18);
+}
+ 
+      .section-divider {
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+ 
+      /* ── Field group ──────────────────────────────────────────── */
+      .field-group {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 8px;
+      }
+ 
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+ 
+      label {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text);
+      }
+ 
+      label .required-star {
+        color: var(--green);
+        margin-left: 2px;
+      }
+ 
+      .hint {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: -2px;
+      }
+ 
+      /* ── Inputs ───────────────────────────────────────────────── */
+      input[type="text"],
+      input[type="tel"],
+      input[type="email"] {
+        width: 100%;
+        background: var(--surface);
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius-sm);
+        color: var(--white);
+        font-size: 16px;
+        padding: 13px 14px;
+        outline: none;
+        transition:
+          border-color var(--transition),
+          box-shadow var(--transition);
+        -webkit-appearance: none;
+      }
+ 
+      input[type="text"]::placeholder,
+      input[type="tel"]::placeholder,
+      input[type="email"]::placeholder {
+        color: var(--muted);
+        font-size: 16px;
+      }
+ 
+      input:focus {
+        border-color: var(--blue);
+        box-shadow: 0 0 0 3px rgba(43, 56, 240, 0.18);
+      }
+ 
+      input:valid:not(:placeholder-shown) {
+        border-color: rgba(43, 56, 240, 0.5);
+      }
+ 
+      input.error {
+        border-color: var(--error);
+        box-shadow: 0 0 0 3px rgba(255, 77, 79, 0.12);
+      }
+ 
+      .field-error {
+        font-size: 12px;
+        color: var(--error);
+        display: none;
+      }
+ 
+      .field-error.visible {
+        display: block;
+      }
+ 
+      /* ── Separator ────────────────────────────────────────────── */
+      .section-spacer {
+        height: 1px;
+        background: var(--border);
+        margin: 28px 0;
+      }
+ 
+      /* ── Consent ──────────────────────────────────────────────── */
+      .consent-block {
+        background: rgba(43, 56, 240, 0.06);
+        border: 1px solid rgba(43, 56, 240, 0.2);
+        border-radius: var(--radius-sm);
+        padding: 14px 16px;
+        margin-bottom: 24px;
+      }
+ 
+      .consent-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+ 
+      .consent-row input[type="checkbox"] {
+        width: 22px;
+        height: 22px;
+        accent-color: var(--green);
+        margin-top: 1px;
+        flex-shrink: 0;
+        cursor: pointer;
+      }
+ 
+      .consent-row label {
+        font-size: 13px;
+        color: var(--text-sub);
+        font-weight: 400;
+        cursor: pointer;
+        line-height: 1.5;
+      }
+ 
+      /* ── Submit button ────────────────────────────────────────── */
+      .btn-submit {
+        width: 100%;
+        background: var(--blue);
+        color: var(--white);
+        border: none;
+        border-radius: var(--radius-sm);
+        font-size: 15px;
+        font-weight: 800;
+        letter-spacing: 0.3px;
+        padding: 15px;
+        cursor: pointer;
+        transition:
+          background var(--transition),
+          transform var(--transition),
+          box-shadow var(--transition);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+ 
+      .btn-submit:hover:not(:disabled) {
+        background: var(--blue-dark);
+        box-shadow: 0 4px 20px rgba(43, 56, 240, 0.45);
+        transform: translateY(-1px);
+      }
+ 
+      .btn-submit:active:not(:disabled) {
+        transform: translateY(0);
+      }
+ 
+      .btn-submit:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+ 
+      .btn-submit svg {
+        width: 18px;
+        height: 18px;
+      }
+ 
+      /* ── Privacy note ─────────────────────────────────────────── */
+      .privacy-block {
+        margin-top: 20px;
+        background: rgba(107, 122, 153, 0.07);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        padding: 14px 16px;
+      }
+ 
+      .privacy-block-header {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin-bottom: 8px;
+      }
+ 
+      .privacy-block-header svg {
+        width: 14px;
+        height: 14px;
+        color: var(--muted);
+        flex-shrink: 0;
+      }
+ 
+      .privacy-block-title {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+      }
+ 
+      .privacy-block-body {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.65;
+        margin-bottom: 12px;
+      }
+ 
+      .privacy-block-body strong {
+        color: var(--text-sub);
+        font-weight: 600;
+      }
+ 
+      .privacy-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+ 
+      .privacy-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 11.5px;
+        font-weight: 600;
+        color: var(--text-sub);
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 4px 11px;
+        text-decoration: none;
+        transition:
+          border-color var(--transition),
+          color var(--transition),
+          background var(--transition);
+      }
+ 
+      .privacy-link:hover {
+        color: var(--white);
+        border-color: var(--muted);
+        background: rgba(255, 255, 255, 0.07);
+      }
+ 
+      /* ── Success state ────────────────────────────────────────── */
+      .success-screen {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 48px 28px;
+        gap: 16px;
+      }
+ 
+      .success-screen.visible {
+        display: flex;
+      }
+ 
+      .success-icon {
+        width: 72px;
+        height: 72px;
+        background: var(--green-light);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+ 
+      .success-icon svg {
+        width: 36px;
+        height: 36px;
+        color: var(--green-dark);
+      }
+ 
+      .success-screen h2 {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--white);
+      }
+ 
+      .success-screen p {
+        font-size: 14px;
+        color: var(--text-sub);
+        max-width: 340px;
+        line-height: 1.6;
+      }
+ 
+      .btn-new {
+        margin-top: 8px;
+        background: transparent;
+        border: 1.5px solid var(--green);
+        color: var(--green);
+        border-radius: var(--radius-sm);
+        padding: 12px 28px;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        transition:
+          background var(--transition),
+          color var(--transition);
+      }
+ 
+      .btn-new:hover {
+        background: var(--green);
+        color: var(--black);
+      }
+ 
+      /* ── First-come note ───────────────────────────────────────── */
+      .first-come-note {
+        margin-bottom: 10px;
+        font-size: 12.5px;
+        color: var(--text-sub);
+        font-weight: 500;
+        text-align: center;
+      }
+ 
+      /* ── Footer ───────────────────────────────────────────────── */
+      .page-footer {
+        margin-top: 24px;
+        text-align: center;
+        font-size: 12px;
+        color: var(--muted);
+      }
+ 
+      .page-footer strong {
+        color: var(--text-sub);
+      }
+ 
+      /* ── Responsive ───────────────────────────────────────────── */
+      @media (max-width: 420px) {
+        .card-hero,
+        .card-body {
+          padding: 20px 16px;
+        }
+        .section-title {
+          font-size: 12px;
+        }
+        .btn-submit {
+          font-size: 16px;
+          padding: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Brand header -->
+      <header class="brand-header">
+        <div class="logo-lockup">
+          <img
+            src="https://cdn.prod.website-files.com/66b0a72103f05e91497d72b7/66bb1585bd15bc1a5d5591cd_Spiro%20Logo%20Green.png"
+            alt="Spiro"
+            class="spiro-logo"
+          />
+        </div>
+      </header>
+ 
+      <!-- Card -->
+      <div class="card">
+        <!-- Hero -->
+         
+        <div class="card-hero">
+          <div class="hero-eyebrow">Spiro Refer and earn Program</div>
+          <h1><span class="accent"> Refer a Customer, Earn KSh 1,500 Commision Instantly with Spiro</span></h1>
+          <p>
+            Uko na customer? Jaza details, sisi tunahandle!.
+          </p>
+        </div>
+ 
+        <!-- Form body -->
+        <div class="card-body">
+          <form id="referralForm" novalidate>
+            <!-- Section 1: Referral -->
+            <div class="section-label">
+              <div class="section-num">1</div>
+              <span class="section-title"
+                >Your Details
+                <span
+                  style="
+                    font-weight: 400;
+                    color: var(--muted);
+                    font-size: 11px;
+                    letter-spacing: 0;
+                    text-transform: none;
+                  "
+                  >(the Person referring)</span
+                ></span
+              >
+              <div class="section-divider"></div>
+            </div>
+ 
+            <div class="field-group">
+              <div class="field">
+                <label for="refName"
+                  >Your Full Name <span class="required-star">*</span></label
+                >
+                <input
+                  type="text"
+                  id="refName"
+                  name="refName"
+                  placeholder="e.g. John Kamau"
+                  autocomplete="name"
+                  required
+                />
+                <span class="field-error" id="refNameErr"
+                  >Please enter your full name.</span
+                >
+              </div>
+ 
+              <div class="field">
+                <label for="refId"
+                  >Your National ID Number
+                  <span class="required-star">*</span></label
+                >
+                <input
+                  type="text"
+                  id="refId"
+                  name="refId"
+                  placeholder="e.g. 12345678"
+                  inputmode="numeric"
+                  maxlength="10"
+                  required
+                />
+                <span class="hint"
+                  >As it appears on your ID card (7–10 digits)</span
+                >
+                <span class="field-error" id="refIdErr"
+                  >Enter a valid ID number (7–10 digits).</span
+                >
+              </div>
+ 
+              <div class="field">
+                <label for="refPhone"
+                  >Your Phone Number <span class="required-star">*</span></label
+                >
+                <input
+                  type="tel"
+                  id="refPhone"
+                  name="refPhone"
+                  placeholder="e.g. 0712 345 678"
+                  autocomplete="tel"
+                  maxlength="13"
+                  required
+                />
+                <span class="hint"
+                  >The number registered on your Spiro account</span
+                >
+                <span class="field-error" id="refPhoneErr"
+                  >Enter a valid Kenyan phone number.</span
+                >
+              </div>
+ 
+<div class="field">
+  <label for="department">
+    Department <span class="required-star">*</span>
+  </label>
+
+  <select id="department" name="department" required>
+    <option value="">Select Department</option>
+    <option value="sales">Sales</option>
+    <option value="operations">Operations</option>
+    <option value="customer_service">Customer Service</option>
+    <option value="marketing">Marketing</option>
+    <option value="finance">Finance</option>
+    <option value="hr">Human Resources</option>
+  </select>
+
+  <span class="hint">
+    Select the department you belong to.
+  </span>
+
+  <span class="field-error" id="departmentErr">
+    Please select a department.
+  </span>
+</div>
+
+   <div class="input-box" id="inputBox"></div>
+
+</div>   
+            <div class="section-spacer"></div>
+ 
+            <!-- Section 2: New Customer -->
+            <div class="section-label">
+              <div class="section-num">2</div>
+              <span class="section-title"
+                >Future Spiro Bike Owner
+                <span
+                  style="
+                    font-weight: 400;
+                    color: var(--muted);
+                    font-size: 11px;
+                    letter-spacing: 0;
+                    text-transform: none;
+                  "
+                  >(the person being referred)</span
+                ></span
+              >
+              <div class="section-divider"></div>
+            </div>
+ 
+            <div class="field-group">
+              <div class="field">
+                <label for="custName"
+                  >Full Name <span class="required-star">*</span></label
+                >
+                <input
+                  type="text"
+                  id="custName"
+                  name="custName"
+                  placeholder="e.g. Grace Wanjiru"
+                  required
+                />
+                <span class="field-error" id="custNameErr"
+                  >Please enter the customer's full name.</span
+                >
+              </div>
+ 
+              <div class="field">
+                <label for="custPhone"
+                  >Customer's Phone Number
+                  <span class="required-star">*</span></label
+                >
+                <input
+                  type="tel"
+                  id="custPhone"
+                  name="custPhone"
+                  placeholder="e.g. 0798 765 432"
+                  maxlength="13"
+                  required
+                />
+                <span class="hint"
+                  >Active number the customer will use to register</span
+                >
+                <span class="field-error" id="custPhoneErr"
+                  >Enter a valid Kenyan phone number.</span
+                >
+              </div>
+            </div>
+ 
+            <div class="section-spacer"></div>
+ 
+           <!-- Consent -->
+<div class="consent-block">
+ 
+  <!-- Privacy Notice -->
+<p class="privacy-notice" style="margin-bottom: 16px; font-size: 12px; color: var(--text-sub); line-height: 1.6;">
+    Your personal data and that of the referee is collected solely for referral verification,
+    customer onboarding, and related support services. Data will not be used for any other
+    purpose without further consent. You both have the right to access, correct, or request
+    deletion of your data at any time.
+</p>
+ 
+  <!-- Checkbox 1 -->
+<div class="consent-row" style="margin-bottom: 12px;">
+<input type="checkbox" id="refereeConsent" name="refereeConsent" />
+<label for="refereeConsent">
+      I confirm the referee is aware of and has consented to their details being submitted to Spiro,
+      and has agreed for their information to be used for the purpose of onboarding and related support services.
+</label>
+</div>
+ 
+  <!-- Checkbox 2 -->
+<div class="consent-row">
+<input type="checkbox" id="privacyConsent" name="privacyConsent" />
+<label for="privacyConsent">
+      I confirm I have read and understood the Privacy Notice.
+</label>
+</div>
+ 
+</div>
+ 
+            <!-- Submit -->
+            <p class="first-come-note">
+              First employee to submit customer details will be eligible for the
+              reward.
+            </p>
+            <p class="program-disclaimer"
+                    style="
+                      margin-bottom: 14px;
+                      font-size: 12px;
+                      color: var(--yellow);
+                      font-weight: 700;
+                      font-style: italic;
+                      text-align: center;
+                      line-height: 1.5;
+                    ">
+              Disclaimer: The Spiro Refer and Earn Program is valid for a limited period of
+              two (2) months from the official launch date. Spiro reserves the right to
+              modify, extend, or terminate the program at its discretion.
+            </p>
+            <button type="submit" class="btn-submit" id="submitBtn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
+              </svg>
+              Submit Referral
+            </button>
+ 
+            <div class="privacy-block">
+              <div class="privacy-block-header">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 3l8 4v5c0 5.25-3.5 9.74-8 11-4.5-1.26-8-5.75-8-11V7l8-4z"
+                  />
+                </svg>
+                <span class="privacy-block-title">Data Privacy</span>
+              </div>
+              <p class="privacy-block-body">
+                Your personal data and that of the referred customer is
+                collected solely for referral verification, customer onboarding,
+                and related support services. By submitting this form, you
+                confirm the referred customer has
+                <strong>consented</strong> to their information being shared
+                with and processed by Spiro. Data will not be used for any other
+                purpose without further consent. You both have the right to
+                access, correct, or request deletion of your data at any time.
+              </p>
+              <div class="privacy-links">
+                <a href="mailto:dpo@spironet.com" class="privacy-link">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    width="12"
+                    height="12"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M3 8l9 6 9-6M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                  DPO Contact
+                </a>
+                <a
+                  href="https://www.spironet.com/trust-center/privacy-notice"
+                  target="_blank"
+                  rel="noopener"
+                  class="privacy-link"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    width="12"
+                    height="12"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12h6m-3-3v6M4 6h16M4 18h16"
+                    />
+                  </svg>
+                  Privacy Notice
+                </a>
+                <a
+                  href="https://www.spironet.com/trust-center/data-subject-rights"
+                  target="_blank"
+                  rel="noopener"
+                  class="privacy-link"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    width="12"
+                    height="12"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
+                  </svg>
+                  Data Subject Rights
+                </a>
+              </div>
+            </div>
+          </form>
+ 
+          <!-- Success state -->
+          <div class="success-screen" id="successScreen">
+            <div class="success-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </div>
+            <h2>Referral Submitted!</h2>
+            <p>
+              Your referral is in. The Spiro team will reach out to the customer
+              to complete onboarding. Your commission is processed once the
+              customer becomes active on the platform.
+            </p>
+            <button class="btn-new" id="newReferralBtn">
+              Refer Another Customer
+            </button>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Page footer -->
+      <footer class="page-footer">
+        &copy; Spiro &mdash; Africa's Largest Electric Mobility Network.
+ 
+        Questions?
+        <a
+          href="mailto:support@spironet.com"
+          style="color: var(--blue); text-decoration: none"
+          >support@spironet.com</a
+        >
+      </footer>
+    </div>
+ 
+   <script>
+(function () {
+  "use strict";
+
+  const form = document.getElementById("referralForm");
+  const submitBtn = document.getElementById("submitBtn");
+  const successDiv = document.getElementById("successScreen");
+  const newBtn = document.getElementById("newReferralBtn");
+
+  /* ── Validation helpers ───────────────────────────────── */
+  const rules = {
+    refName: {
+      test: (v) => v.trim().split(/\s+/).length >= 2,
+      msg: "Please enter your full name (first and last).",
+    },
+    refId: {
+      test: (v) => /^\d{7,10}$/.test(v.trim()),
+      msg: "Enter a valid ID number (7–10 digits).",
+    },
+    refPhone: {
+      test: (v) => /^(?:\+254|0)[17]\d{8}$/.test(v.replace(/\s/g, "")),
+      msg: "Enter a valid Kenyan phone number (e.g. 0712345678).",
+    },
+    custName: {
+      test: (v) => v.trim().split(/\s+/).length >= 2,
+      msg: "Please enter the customer's full name (first and last).",
+    },
+    custPhone: {
+      test: (v) => /^(?:\+254|0)[17]\d{8}$/.test(v.replace(/\s/g, "")),
+      msg: "Enter a valid Kenyan phone number (e.g. 0712345678).",
+    },
+
+    department: {
+      test: (v) => v.trim() !== "",
+      msg: "Please select a department.",
+    },
+  };
+
+  function showError(id, msg) {
+    const el = document.getElementById(id + "Err");
+    const input = document.getElementById(id);
+
+    if (el) {
+      el.textContent = msg;
+      el.classList.add("visible");
+    }
+    if (input) input.classList.add("error");
+  }
+
+  function clearError(id) {
+    const el = document.getElementById(id + "Err");
+    const input = document.getElementById(id);
+
+    if (el) el.classList.remove("visible");
+    if (input) input.classList.remove("error");
+  }
+
+  /* ── Live validation ───────────────────────────────── */
+  Object.keys(rules).forEach((id) => {
+    const input = document.getElementById(id);
+    if (!input) return;
+
+    input.addEventListener("blur", () => {
+      if (!rules[id].test(input.value)) {
+        showError(id, rules[id].msg);
+      } else {
+        clearError(id);
+      }
+    });
+
+    input.addEventListener("input", () => {
+      if (input.classList.contains("error") && rules[id].test(input.value)) {
+        clearError(id);
+      }
+    });
+  });
+
+  /* ── Submit ──────────────────────────────────────── */
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    let valid = true;
+
+    Object.keys(rules).forEach((id) => {
+      const input = document.getElementById(id);
+      if (!input) return;
+
+      if (!rules[id].test(input.value)) {
+        showError(id, rules[id].msg);
+        valid = false;
+      } else {
+        clearError(id);
+      }
+    });
+
+    const refereeConsent = document.getElementById("refereeConsent");
+    const privacyConsent = document.getElementById("privacyConsent");
+
+    if (!refereeConsent.checked) {
+      refereeConsent.style.outline = "2px solid var(--error)";
+      valid = false;
+    } else {
+      refereeConsent.style.outline = "";
+    }
+
+    if (!privacyConsent.checked) {
+      privacyConsent.style.outline = "2px solid var(--error)";
+      valid = false;
+    } else {
+      privacyConsent.style.outline = "";
+    }
+
+    if (!valid) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting…";
+
+    const payload = {
+      refName: document.getElementById("refName").value.trim(),
+      refId: document.getElementById("refId").value.trim(),
+      refPhone: document.getElementById("refPhone").value.trim(),
+      custName: document.getElementById("custName").value.trim(),
+      custPhone: document.getElementById("custPhone").value.trim(),
+
+      department: document.getElementById("department").value,
+
+      refereeConsent: refereeConsent.checked,
+      privacyConsent: privacyConsent.checked,
+    };
+
+    const SUBMIT_LABEL = `
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+      </svg>
+      Submit Referral`;
+
+    try {
+      const res = await fetch("/api/referral", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = SUBMIT_LABEL;
+
+        let banner = document.getElementById("submitErrBanner");
+        if (!banner) {
+          banner = document.createElement("p");
+          banner.id = "submitErrBanner";
+          banner.style.cssText =
+            "color:#FF4D4F;font-size:13px;text-align:center;margin-top:12px;";
+          submitBtn.insertAdjacentElement("afterend", banner);
+        }
+
+        banner.textContent =
+          data.error || "Submission failed. Please try again.";
+        return;
+      }
+
+      form.style.display = "none";
+      successDiv.classList.add("visible");
+      successDiv.scrollIntoView({ behavior: "smooth" });
+
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = SUBMIT_LABEL;
+
+      let banner = document.getElementById("submitErrBanner");
+      if (!banner) {
+        banner = document.createElement("p");
+        banner.id = "submitErrBanner";
+        banner.style.cssText =
+          "color:#FF4D4F;font-size:13px;text-align:center;margin-top:12px;";
+        submitBtn.insertAdjacentElement("afterend", banner);
+      }
+
+      banner.textContent = "Connection error. Please try again.";
+    }
+  });
+
+  /* ── Reset ──────────────────────────────────────── */
+  newBtn.addEventListener("click", () => {
+    form.reset();
+    Object.keys(rules).forEach((id) => clearError(id));
+
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+      </svg>
+      Submit Referral`;
+
+    successDiv.classList.remove("visible");
+    form.style.display = "";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+})();
+</script>
+  </body>
+</html>
+ 
+ 
