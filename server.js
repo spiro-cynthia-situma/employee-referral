@@ -66,6 +66,14 @@ const ReferralSchema = z.object({
     .trim()
     .min(1, "Department is required"),
 
+referralCode: z
+  .union([z.string(), z.null()])
+  .optional()
+  .transform((v) => {
+    if (v === null || v === "") return undefined;
+    return v;
+  }),
+
   refereeConsent: z.boolean(),
   privacyConsent: z.boolean(),
 });
@@ -118,17 +126,17 @@ app.post("/api/referral", referralLimiter, async (req, res) => {
 
   const parsed = ReferralSchema.safeParse(req.body);
 
-  if (!parsed.success) {
-    const fields = parsed.error.issues.map((i) => ({
-      field: i.path[0],
-      message: i.message,
-    }));
+ if (!parsed.success) {
+  console.log(
+    "❌ ZOD ISSUES:",
+    JSON.stringify(parsed.error.issues, null, 2)
+  );
 
-    return res.status(400).json({
-      error: "Validation failed.",
-      fields,
-    });
-  }
+  return res.status(400).json({
+    error: "Validation failed.",
+    issues: parsed.error.issues,
+  });
+}
 
   const {
     refName,
@@ -137,28 +145,39 @@ app.post("/api/referral", referralLimiter, async (req, res) => {
     custName,
     custPhone,
     department,
+    referralCode,
     refereeConsent,
     privacyConsent,
   } = parsed.data;
 
+
+  if (department === "customer_service" && !referralCode?.trim()) {
+  return res.status(400).json({
+    error: "Referral code is required for Customer Service.",
+  });
+}
   try {
     const { data, error } = await supabase
       .from("employee_referrals")
       .insert({
-        referrer_name: refName.trim(),
-        referrer_id: refId.trim(),
-        referrer_phone: refPhone.trim(),
+  referrer_name: refName.trim(),
+  referrer_id: refId.trim(),
+  referrer_phone: refPhone.trim(),
 
-        customer_name: custName.trim(),
-        customer_phone: custPhone.trim(),
+  customer_name: custName.trim(),
+  customer_phone: custPhone.trim(),
 
-        department: department.trim(),
+  department: department.trim(),
 
-        referee_consent: refereeConsent,
-        privacy_consent: privacyConsent,
+referral_code:
+    referralCode && referralCode.trim()
+      ? referralCode.trim()
+      : null,
+  referee_consent: refereeConsent,
+  privacy_consent: privacyConsent,
 
-        status: "New",
-      })
+  status: "New",
+})
       .select();
 
     console.log("📦 INSERT RESULT:", data);
