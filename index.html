@@ -695,7 +695,6 @@
   <select id="department" name="department" required>
     <option value="">Select Department</option>
 
-    <option value="commercial">Commercial</option>
     <option value="energy">Energy</option>
     <option value="hr_admin">HR and Admin</option>
     <option value="it">IT</option>
@@ -798,6 +797,29 @@
                   >Enter a valid Kenyan phone number.</span
                 >
               </div>
+
+              <div class="field">
+                <label for="custId"
+                  >Customers National ID Number
+                  <span class="required-star">*</span></label
+                >
+                <input
+                  type="text"
+                  id="custId"
+                  name="custId"
+                  placeholder="e.g. 12345678"
+                  inputmode="numeric"
+                  maxlength="10"
+                  required
+                />
+                <span class="hint"
+                  >As it appears on your ID card (7–10 digits)</span
+                >
+                <span class="field-error" id="custIdErr"
+                  >Enter a valid ID number (7–10 digits).</span
+                >
+              </div>
+
             </div>
  
             <div class="section-spacer"></div>
@@ -1038,11 +1060,16 @@
       test: (v) => /^(?:\+254|0)[17]\d{8}$/.test(v.replace(/\s/g, "")),
       msg: "Enter a valid Kenyan phone number (e.g. 0712345678).",
     },
+   
 
     department: {
       test: (v) => v.trim() !== "",
       msg: "Please select a department.",
     }
+    ,custId: {
+      test: (v) => /^\d{7,10}$/.test(v.trim()),
+      msg: "Enter a valid ID number (7–10 digits).",
+    },
 
   };
 
@@ -1162,6 +1189,7 @@ const payload = {
   refName: document.getElementById("refName").value.trim(),
   refId: document.getElementById("refId").value.trim(),
   refPhone: document.getElementById("refPhone").value.trim(),
+  custId: document.getElementById("custId").value.trim(),
 
   department: departmentValue,
 
