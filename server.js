@@ -56,7 +56,6 @@ const kenyanPhone = z.string().trim().regex(/^(?:\+254|0)[17]\d{8}$/, {
 const ReferralSchema = z.object({
   refName: fullName,
   refId: kenyanId,
-  custId: kenyanId,
   refPhone: kenyanPhone,
   custName: fullName,
   custPhone: kenyanPhone,
@@ -140,7 +139,6 @@ app.post("/api/referral", referralLimiter, async (req, res) => {
   const {
     refName,
     refId,
-    custId,
     refPhone,
     custName,
     custPhone,
@@ -163,8 +161,6 @@ app.post("/api/referral", referralLimiter, async (req, res) => {
   referrer_name: refName.trim(),
   referrer_id: refId.trim(),
   referrer_phone: refPhone.trim(),
-  customer_id: custId.trim(),
-
   customer_name: custName.trim(),
   customer_phone: custPhone.trim(),
 
