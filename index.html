@@ -763,7 +763,7 @@
             <div class="field-group">
               <div class="field">
                 <label for="custName"
-                  >Full Name <span class="required-star">*</span></label
+                  > Referred individual Full Name <span class="required-star">*</span></label
                 >
                 <input
                   type="text"
@@ -779,7 +779,7 @@
  
               <div class="field">
                 <label for="custPhone"
-                  >Customer's Phone Number
+                  >Referred individual's Phone Number
                   <span class="required-star">*</span></label
                 >
                 <input
@@ -803,73 +803,9 @@
             </div>
  
             <div class="section-spacer"></div>
- 
-           <!-- Consent -->
-<div class="consent-block">
- 
-  <!-- Privacy Notice -->
-<p class="privacy-notice" style="margin-bottom: 16px; font-size: 12px; color: var(--text-sub); line-height: 1.6;">
-    Your personal data and that of the referee is collected solely for referral verification,
-    customer onboarding, and related support services. Data will not be used for any other
-    purpose without further consent. You both have the right to access, correct, or request
-    deletion of your data at any time.
-</p>
- 
-  <!-- Checkbox 1 -->
-<div class="consent-row" style="margin-bottom: 12px;">
-<input type="checkbox" id="refereeConsent" name="refereeConsent" />
-<label for="refereeConsent">
-      I confirm the referee is aware of and has consented to their details being submitted to Spiro,
-      and has agreed for their information to be used for the purpose of onboarding and related support services.
-</label>
-</div>
- 
-  <!-- Checkbox 2 -->
-<div class="consent-row">
-<input type="checkbox" id="privacyConsent" name="privacyConsent" />
-<label for="privacyConsent">
-      I confirm I have read and understood the Privacy Notice.
-</label>
-</div>
- 
-</div>
- 
-            <!-- Submit -->
-            <p class="first-come-note">
-              First employee to submit customer details will be eligible for the
-              reward.
-            </p>
-            <p class="program-disclaimer"
-                    style="
-                      margin-bottom: 14px;
-                      font-size: 12px;
-                      color: var(--yellow);
-                      font-weight: 700;
-                      font-style: italic;
-                      text-align: center;
-                      line-height: 1.5;
-                    ">
-              Disclaimer: The Spiro Refer and Earn Program is valid for a limited period of
-              two (2) months from the official launch date. Spiro reserves the right to
-              modify, extend, or terminate the program at its discretion.
-            </p>
-            <button type="submit" class="btn-submit" id="submitBtn">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2.5"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
-                />
-              </svg>
-              Submit Referral
-            </button>
- 
+
+
+
             <div class="privacy-block">
               <div class="privacy-block-header">
                 <svg
@@ -897,6 +833,59 @@
                 purpose without further consent. You both have the right to
                 access, correct, or request deletion of your data at any time.
               </p>
+
+<div class="consent-row" style="margin-bottom: 12px;">
+<input type="checkbox" id="refereeConsent" name="refereeConsent" />
+<label for="refereeConsent">
+  The customer is aware that you are sharing their details with Spiro
+      
+</label>
+<span class="field-error" id="refereeConsentErr">
+  Please confirm that the customer has agreed.
+</span>
+</div>
+ 
+  <!-- Checkbox 2 -->
+<div class="consent-row">
+<input type="checkbox" id="privacyConsent" name="privacyConsent" />
+<label for="privacyConsent">
+The customer has agreed to be contacted by Spiro regarding its products and services.
+</label>
+<span class="field-error" id="privacyConsentErr">
+  Please confirm you have read the Privacy Notice.
+</span>
+</div>
+
+<!-- Checkbox 3: User Consent -->
+<div class="consent-row" style="margin-bottom: 12px;">
+  <input type="checkbox" id="userConsent" name="userConsent" />
+  <label for="userConsent">
+    The information provided is accurate to the best of your knowledge.
+  </label>
+  <span class="field-error" id="userConsentErr">
+    Please confirm user consent.
+  </span>
+</div>
+
+<!-- Checkbox 4: Data Processing -->
+<div class="consent-row">
+  <input type="checkbox" id="dataProcessingConsent" name="dataProcessingConsent" />
+  <label for="dataProcessingConsent">
+    You have read and understood the Privacy Notice.
+  </label>
+  <span class="field-error" id="dataProcessingConsentErr">
+    Please confirm data processing consent.
+  </span>
+</div>
+
+<div class="confirmation-row" style="margin-bottom: 20px; margin-left: 20px;margin-top :20px;">
+  <label for="confirmation-row">
+    You may request access to, correction of, or deletion of your personal data at any time,
+    subject to applicable legal and regulatory requirements
+  </label>
+</div>
+
+
               <div class="privacy-links">
                 <a href="mailto:dpo@spironet.com" class="privacy-link">
                   <svg
@@ -964,6 +953,46 @@
                 </a>
               </div>
             </div>
+ 
+           <!-- Consent -->
+
+ 
+            <!-- Submit -->
+            <p class="first-come-note" style="margin-top: 16px;"> First agent to submit customer details will be eligible for the
+              reward.
+            </p>
+            <p class="program-disclaimer"
+                    style="
+                      margin-bottom: 14px;
+                      font-size: 12px;
+                      color: var(--yellow);
+                      font-weight: 700;
+                      font-style: italic;
+                      text-align: center;
+                      line-height: 1.5;
+                    ">
+              Disclaimer: The Spiro Refer and Earn Program is valid for a limited period of
+              two (2) months from the official launch date. Spiro reserves the right to
+              modify, extend, or terminate the program at its discretion.
+            </p>
+            <button type="submit" class="btn-submit" id="submitBtn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
+              </svg>
+              Submit Referral
+            </button>
+ 
+            
           </form>
  
           <!-- Success state -->
@@ -1091,7 +1120,7 @@
 
 
   const department = document.getElementById("department");
-const referralField = document.getElementById("referralField");
+  const referralField = document.getElementById("referralField");
 
 department.addEventListener("change", function () {
   if (this.value === "customer_service") {
@@ -1126,6 +1155,11 @@ department.addEventListener("change", function () {
 
     const refereeConsent = document.getElementById("refereeConsent");
     const privacyConsent = document.getElementById("privacyConsent");
+    const userConsent = document.getElementById("userConsent");
+    const dataProcessingConsent = document.getElementById("dataProcessingConsent");
+    const userConsentErr = document.getElementById("userConsentErr");
+    const dataProcessingConsentErr = document.getElementById("dataProcessingConsentErr");
+
 
     if (!refereeConsent.checked) {
       refereeConsent.style.outline = "2px solid var(--error)";
@@ -1140,6 +1174,24 @@ department.addEventListener("change", function () {
     } else {
       privacyConsent.style.outline = "";
     }
+
+    if (!userConsent.checked) {
+         userConsent.style.outline = "2px solid var(--error)";
+         userConsentErr.style.display = "block";
+          valid = false;
+        } else {
+        userConsent.style.outline = "";
+        userConsentErr.style.display = "none";
+         }
+
+      if (!dataProcessingConsent.checked) {
+      dataProcessingConsent.style.outline = "2px solid var(--error)";
+      dataProcessingConsentErr.style.display = "block";
+       valid = false;
+        } else {
+          dataProcessingConsent.style.outline = "";
+          dataProcessingConsentErr.style.display = "none";
+       }
 
 
 
@@ -1178,6 +1230,9 @@ const payload = {
 
   refereeConsent: refereeConsent.checked,
   privacyConsent: privacyConsent.checked,
+  userConsent: document.getElementById("userConsent").checked,
+  dataProcessingConsent: document.getElementById("dataProcessingConsent").checked,
+
 };
 
     const SUBMIT_LABEL = `

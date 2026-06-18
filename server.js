@@ -74,6 +74,10 @@ referralCode: z
 
   refereeConsent: z.boolean(),
   privacyConsent: z.boolean(),
+
+   // NEW CONSENT FIELDS
+  userConsent: z.boolean(),
+  dataProcessingConsent: z.boolean(),
 });
 
 /* ── CORS ────────────────────────────────────────── */
@@ -146,6 +150,8 @@ app.post("/api/referral", referralLimiter, async (req, res) => {
     referralCode,
     refereeConsent,
     privacyConsent,
+     userConsent,
+    dataProcessingConsent,
   } = parsed.data;
 
 
@@ -172,6 +178,9 @@ referral_code:
       : null,
   referee_consent: refereeConsent,
   privacy_consent: privacyConsent,
+
+  user_consent: userConsent,
+  data_processing_consent: dataProcessingConsent,
 
   status: "New",
 })
