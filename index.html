@@ -1154,7 +1154,9 @@ department.addEventListener("change", function () {
   
 
     const refereeConsent = document.getElementById("refereeConsent");
+    const refereeConsentErr = document.getElementById("refereeConsentErr");
     const privacyConsent = document.getElementById("privacyConsent");
+    const privacyConsentErr = document.getElementById("privacyConsentErr");
     const userConsent = document.getElementById("userConsent");
     const dataProcessingConsent = document.getElementById("dataProcessingConsent");
     const userConsentErr = document.getElementById("userConsentErr");
@@ -1163,16 +1165,20 @@ department.addEventListener("change", function () {
 
     if (!refereeConsent.checked) {
       refereeConsent.style.outline = "2px solid var(--error)";
+      refereeConsentErr.style.display = "block";
       valid = false;
     } else {
       refereeConsent.style.outline = "";
+      refereeConsentErr.style.display = "none";
     }
 
     if (!privacyConsent.checked) {
       privacyConsent.style.outline = "2px solid var(--error)";
+      privacyConsentErr.style.display = "block";
       valid = false;
     } else {
       privacyConsent.style.outline = "";
+      privacyConsentErr.style.display = "none";
     }
 
     if (!userConsent.checked) {
