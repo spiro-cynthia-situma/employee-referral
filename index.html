@@ -492,6 +492,63 @@
       .success-screen.visible {
         display: flex;
       }
+
+.reward-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 5px;
+  padding: 12px 14px;
+
+  background: linear-gradient(135deg, #f3fff0, #e8fbe2);
+  border-radius: 14px;
+  border: 1px solid #d4efc7;
+
+  box-shadow: 0 4px 10px rgba(122, 193, 67, 0.1);
+
+  font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+.reward-icon {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+
+  border-radius: 12px;
+  background: linear-gradient(135deg, #7AC143, #95d46b);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  font-size: 20px;
+
+  box-shadow: 0 3px 8px rgba(122,193,67,0.2);
+}
+
+.reward-content {
+  flex: 1;
+}
+
+.reward-content h3 {
+  margin: 0 0 4px;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  color: #2d5a27;
+}
+
+.reward-content p {
+  margin: 0;
+
+  font-size: 12px;
+  line-height: 1.5;
+
+  color: #557255;
+}
  
       .success-icon {
         width: 72px;
@@ -686,6 +743,10 @@
                   >Enter a valid Kenyan phone number.</span
                 >
               </div>
+
+
+               <!-- Reward Card -->
+
  
 <div class="field">
   <label for="department">
@@ -718,6 +779,8 @@
   </span>
 </div>
 
+
+
 <div class="field" id="referralField" style="display:none;">
   <label for="referralCode">
     Referral Code <span class="required-star">*</span>
@@ -734,6 +797,21 @@
   <span class="field-error" id="referralCodeErr">
     Referral code is required for Customer Service.
   </span>
+</div>
+
+<div id="rewardContainer" >
+
+  <div id="rewardCard" class="reward-card">
+    <div class="reward-icon" id="rewardIcon">💰</div>
+
+    <div class="reward-content">
+      <h3 id="rewardTitle">You'll earn KSh 1,500</h3>
+      <p id="rewardText">
+        You'll earn KSh 1,500 (sent via M-Pesa) once your referred customer successfully joins Spiro..
+      </p>
+    </div>
+  </div>
+
 </div>
 
    <div class="input-box" id="inputBox"></div>
