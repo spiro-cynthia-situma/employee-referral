@@ -171,7 +171,61 @@
         color: var(--text-sub);
         line-height: 1.55;
       }
- 
+
+      /* ── Countdown ────────────────────────────────────────────── */
+      .countdown {
+        margin-top: 16px;
+      }
+
+      .countdown-label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--yellow);
+        margin-bottom: 8px;
+      }
+
+      .countdown-timer {
+        display: flex;
+        gap: 8px;
+      }
+
+      .countdown-unit {
+        flex: 1;
+        max-width: 76px;
+        background: rgba(200, 240, 0, 0.08);
+        border: 1px solid rgba(200, 240, 0, 0.25);
+        border-radius: var(--radius-sm);
+        padding: 8px 4px;
+        text-align: center;
+      }
+
+      .countdown-value {
+        display: block;
+        font-size: 20px;
+        font-weight: 800;
+        color: var(--white);
+        font-variant-numeric: tabular-nums;
+        line-height: 1.2;
+      }
+
+      .countdown-word {
+        display: block;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        color: var(--text-sub);
+        margin-top: 2px;
+      }
+
+      .countdown-ended {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--error);
+      }
+
       /* ── Form body ────────────────────────────────────────────── */
       .card-body {
         padding: 28px;
@@ -659,6 +713,27 @@
           <p>
             Uko na customer? Jaza details, sisi tunahandle!.
           </p>
+          <div class="countdown" id="countdown">
+            <div class="countdown-label">Offer inaisha 31 July</div>
+            <div class="countdown-timer">
+              <div class="countdown-unit">
+                <span class="countdown-value" id="cdDays">--</span>
+                <span class="countdown-word">Days</span>
+              </div>
+              <div class="countdown-unit">
+                <span class="countdown-value" id="cdHours">--</span>
+                <span class="countdown-word">Hours</span>
+              </div>
+              <div class="countdown-unit">
+                <span class="countdown-value" id="cdMins">--</span>
+                <span class="countdown-word">Mins</span>
+              </div>
+              <div class="countdown-unit">
+                <span class="countdown-value" id="cdSecs">--</span>
+                <span class="countdown-word">Secs</span>
+              </div>
+            </div>
+          </div>
         </div>
  
         <!-- Form body -->
@@ -1393,6 +1468,35 @@ console.log("🔥 referralCode value:", document.getElementById("referralCode")?
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
+})();
+
+/* ── Countdown to 31 July ─────────────────────────────────── */
+(() => {
+  const deadline = new Date("2026-07-31T23:59:59+03:00").getTime();
+  const els = {
+    days: document.getElementById("cdDays"),
+    hours: document.getElementById("cdHours"),
+    mins: document.getElementById("cdMins"),
+    secs: document.getElementById("cdSecs"),
+  };
+  const pad = (n) => String(n).padStart(2, "0");
+
+  function tick() {
+    const diff = deadline - Date.now();
+    if (diff <= 0) {
+      document.getElementById("countdown").innerHTML =
+        '<div class="countdown-ended">Offer imeisha!</div>';
+      clearInterval(timer);
+      return;
+    }
+    els.days.textContent = pad(Math.floor(diff / 86400000));
+    els.hours.textContent = pad(Math.floor(diff / 3600000) % 24);
+    els.mins.textContent = pad(Math.floor(diff / 60000) % 60);
+    els.secs.textContent = pad(Math.floor(diff / 1000) % 60);
+  }
+
+  const timer = setInterval(tick, 1000);
+  tick();
 })();
 </script>
   </body>
