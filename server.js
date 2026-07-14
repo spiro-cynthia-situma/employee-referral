@@ -113,6 +113,7 @@ app.use((req, res, next) => {
 
 app.use(express.static(path.join(__dirname)));
 
+
 const referralLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 10,
@@ -120,6 +121,7 @@ const referralLimiter = rateLimit({
     error: "Too many submissions. Please try again later.",
   },
 });
+
 
 /* ── POST /api/referral ──────────────────────────── */
 
@@ -140,6 +142,30 @@ app.post("/api/referral", referralLimiter, async (req, res) => {
   });
 }
 
+
+
+  const normalizeKenyanPhone = (phone) => {
+  let cleaned = phone.trim().replace(/\s+/g, "");
+
+  // Remove +254
+  if (cleaned.startsWith("+254")) {
+    cleaned = cleaned.substring(4);
+  }
+
+  // Remove 254
+  else if (cleaned.startsWith("254")) {
+    cleaned = cleaned.substring(3);
+  }
+
+  // Remove leading 0
+  else if (cleaned.startsWith("0")) {
+    cleaned = cleaned.substring(1);
+  }
+
+  return cleaned;
+
+};
+
   const {
     refName,
     refId,
@@ -150,7 +176,7 @@ app.post("/api/referral", referralLimiter, async (req, res) => {
     referralCode,
     refereeConsent,
     privacyConsent,
-     userConsent,
+    userConsent,
     dataProcessingConsent,
   } = parsed.data;
 
@@ -161,14 +187,71 @@ app.post("/api/referral", referralLimiter, async (req, res) => {
   });
 }
   try {
+
+const normalizedCustomerPhone = normalizeKenyanPhone(custPhone);
+const normalizedReferrerPhone = normalizeKenyanPhone(refPhone);
+
+console.log("Checking customer phone:", normalizedCustomerPhone);
+
+// Self referral check
+if (normalizedCustomerPhone === normalizedReferrerPhone) {
+  return res.status(400).json({
+    error: "Self referral is not accepted."
+  });
+}
+
+
+// Check if customer already exists (new format)
+const { data: existingCustomer, error: checkError } = await supabase
+  .from("employee_referrals")
+  .select("id")
+  .eq("customer_phone", normalizedCustomerPhone)
+  .limit(1);
+
+
+
+// Check if customer already exists (old formats like 079... or +25479...)
+const { data: oldFormatCustomer, error: oldFormatError } = await supabase
+  .from("employee_referrals")
+  .select("id")
+  .or(
+    `customer_phone.eq.0${normalizedCustomerPhone},customer_phone.eq.+254${normalizedCustomerPhone}`
+  )
+  .limit(1);
+
+if (checkError || oldFormatError) {
+  console.error(
+    "❌ Duplicate check error:",
+    checkError?.message || oldFormatError?.message
+  );
+
+
+  return res.status(500).json({
+    error: "Unable to verify customer."
+  });
+}
+
+console.log("Existing customer:", existingCustomer);
+console.log("Old format customer:", oldFormatCustomer);
+
+if (
+  (existingCustomer && existingCustomer.length > 0) ||
+  (oldFormatCustomer && oldFormatCustomer.length > 0)
+) {
+  return res.status(409).json({
+    error: "Sorry, Customer has already been referred."
+  });
+
+}
+
     const { data, error } = await supabase
       .from("employee_referrals")
       .insert({
   referrer_name: refName.trim(),
   referrer_id: refId.trim(),
-  referrer_phone: refPhone.trim(),
+  referrer_phone: normalizedReferrerPhone,
   customer_name: custName.trim(),
-  customer_phone: custPhone.trim(),
+  customer_phone: normalizedCustomerPhone,
 
   department: department.trim(),
 
