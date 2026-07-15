@@ -200,48 +200,89 @@ if (normalizedCustomerPhone === normalizedReferrerPhone) {
   });
 }
 
+// ===============================
+// Check referrals table first
+// ===============================
 
-// Check if customer already exists (new format)
-const { data: existingCustomer, error: checkError } = await supabase
-  .from("employee_referrals")
-  .select("id")
-  .eq("customer_phone", normalizedCustomerPhone)
-  .limit(1);
+// ===============================
+// Phone variants for all formats
+// ===============================
+
+const phoneVariants = [
+  normalizedCustomerPhone,
+  `0${normalizedCustomerPhone}`,
+  `254${normalizedCustomerPhone}`,
+  `+254${normalizedCustomerPhone}`,
+];
 
 
+// ===============================
+// Check referrals table
+// Prevent customer who already has a normal referral
+// ===============================
 
-// Check if customer already exists (old formats like 079... or +25479...)
-const { data: oldFormatCustomer, error: oldFormatError } = await supabase
-  .from("employee_referrals")
-  .select("id")
-  .or(
-    `customer_phone.eq.0${normalizedCustomerPhone},customer_phone.eq.+254${normalizedCustomerPhone}`
-  )
-  .limit(1);
+const { data: existingReferralCustomer, error: referralCheckError } =
+  await supabase
+    .from("referrals")
+    .select("id")
+    .in("customer_phone", phoneVariants)
+    .limit(1);
 
-if (checkError || oldFormatError) {
+
+if (referralCheckError) {
   console.error(
-    "❌ Duplicate check error:",
-    checkError?.message || oldFormatError?.message
+    "❌ Referral table check error:",
+    referralCheckError.message
   );
-
 
   return res.status(500).json({
     error: "Unable to verify customer."
   });
 }
 
-console.log("Existing customer:", existingCustomer);
-console.log("Old format customer:", oldFormatCustomer);
 
-if (
-  (existingCustomer && existingCustomer.length > 0) ||
-  (oldFormatCustomer && oldFormatCustomer.length > 0)
-) {
+console.log("Existing referral customer:", existingReferralCustomer);
+
+
+if (existingReferralCustomer && existingReferralCustomer.length > 0) {
   return res.status(409).json({
     error: "Sorry, Customer has already been referred."
   });
+}
 
+
+// ===============================
+// Check employee_referrals table
+// Prevent duplicate employee referrals
+// ===============================
+
+const { data: existingEmployeeReferral, error: employeeCheckError } =
+  await supabase
+    .from("employee_referrals")
+    .select("id")
+    .in("customer_phone", phoneVariants)
+    .limit(1);
+
+
+if (employeeCheckError) {
+  console.error(
+    "❌ Employee referral check error:",
+    employeeCheckError.message
+  );
+
+  return res.status(500).json({
+    error: "Unable to verify employee referral."
+  });
+}
+
+
+console.log("Existing employee referral:", existingEmployeeReferral);
+
+
+if (existingEmployeeReferral && existingEmployeeReferral.length > 0) {
+  return res.status(409).json({
+    error: "Sorry, Customer has already been referred."
+  });
 }
 
     const { data, error } = await supabase
