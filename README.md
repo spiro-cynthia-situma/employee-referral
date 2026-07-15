@@ -4,13 +4,16 @@ A web-based employee referral form for Spiro. Employees refer prospective custom
 
 ## Features
 
-- Responsive referral form UI with a cash reward banner (2X Earn Program)
+- Responsive referral form UI with a cash reward banner and a countdown timer to the offer deadline
 - Server-side validation with Zod:
   - Full names must include first and last name
   - Kenyan national ID format (7–10 digits)
   - Kenyan phone number format (`+254` or `0`, followed by `7`/`1` and 8 digits)
   - Referral code is optional, but **required when the department is Customer Service**
   - Four consent checkboxes: referee, privacy, user, and data processing consent
+- Phone numbers are normalized before storage (the `+254`, `254`, or leading `0` prefix is stripped, e.g. `0712345678` → `712345678`)
+- Self-referral rejection — a submission is refused if the customer's phone number matches the referrer's
+- Duplicate detection — a customer who has already been referred (checked against both normalized and legacy `0…`/`+254…` phone formats) is rejected with a `409`
 - Supabase integration — referrals are inserted into the `employee_referrals` table with status `New`
 - Rate limiting on submissions (10 requests per 15 minutes per IP)
 - CORS locked to the deployed origin (`RENDER_EXTERNAL_URL`) or `http://localhost:<PORT>` locally
@@ -28,7 +31,7 @@ A web-based employee referral form for Spiro. Employees refer prospective custom
 
 ## Project Structure
 
-- `index.html` — frontend referral form and reward banner
+- `index.html` — frontend referral form, reward banner, and countdown timer
 - `server.js` — Express server, validation schema, and API routes
 - `keepAlive.js` — pings `/api/health` every 10 minutes in production to keep the Render instance awake
 - `package.json` — scripts and dependencies
@@ -109,13 +112,16 @@ Request body:
 | `userConsent`           | boolean | User consent                                       |
 | `dataProcessingConsent` | boolean | Data processing consent                            |
 
+Before inserting, the server normalizes both phone numbers, rejects self-referrals, and checks Supabase for an existing referral with the same customer phone (in both normalized and legacy formats).
+
 Responses:
 
 - `200` — `{ "success": true, "message": "Referral saved." }`
-- `400` — validation failure (includes Zod `issues`) or missing referral code for Customer Service
+- `400` — validation failure (includes Zod `issues`), missing referral code for Customer Service, or self-referral (customer phone matches referrer phone)
+- `409` — customer has already been referred
 - `429` — rate limit exceeded
 - `502` — Supabase insert failed
-- `500` — unexpected server error
+- `500` — duplicate check failed or unexpected server error
 
 ## Supabase Notes
 
@@ -133,6 +139,8 @@ The backend inserts into a table named `employee_referrals` with these columns:
 - `user_consent`
 - `data_processing_consent`
 - `status` (set to `New` on insert)
+
+Phone numbers (`referrer_phone` and `customer_phone`) are stored in normalized form without the `+254`/`0` prefix (e.g. `712345678`). Duplicate checks also match older rows stored in `0…` or `+254…` formats.
 
 The server uses the Supabase **service role key**, so keep it server-side only and never expose it to the frontend.
 
