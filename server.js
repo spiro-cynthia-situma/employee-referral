@@ -262,20 +262,16 @@ app.post("/api/referral", referralLimiter, async (req, res) => {
   }
 
   const normalizeKenyanPhone = (phone) => {
-    let cleaned = phone.trim().replace(/\s+/g, "");
+    if (!phone) return "";
 
-    // Remove +254
-    if (cleaned.startsWith("+254")) {
-      cleaned = cleaned.substring(4);
-    }
+    let cleaned = phone.toString().trim();
 
-    // Remove 254
-    else if (cleaned.startsWith("254")) {
+    // Remove everything except digits
+    cleaned = cleaned.replace(/\D/g, "");
+
+    if (cleaned.startsWith("254")) {
       cleaned = cleaned.substring(3);
-    }
-
-    // Remove leading 0
-    else if (cleaned.startsWith("0")) {
+    } else if (cleaned.startsWith("0")) {
       cleaned = cleaned.substring(1);
     }
 
@@ -300,42 +296,36 @@ app.post("/api/referral", referralLimiter, async (req, res) => {
     return sendError(res, "0202", { source: { field: "referralCode" } });
   }
   try {
+    // ===============================
+    // Normalize customer phone
+    // ===============================
+
     const normalizedCustomerPhone = normalizeKenyanPhone(custPhone);
     const normalizedReferrerPhone = normalizeKenyanPhone(refPhone);
 
-    console.log("Checking customer phone:", normalizedCustomerPhone);
+    console.log("=================================");
+    console.log("📞 Customer phone submitted:", custPhone);
+    console.log("📞 Normalized phone being checked:", normalizedCustomerPhone);
+    console.log("=================================");
 
     // Self referral check
     if (normalizedCustomerPhone === normalizedReferrerPhone) {
+      console.log("❌ Self referral detected");
+
       return sendError(res, "0301", { source: { field: "custPhone" } });
     }
 
     // ===============================
-    // Check referrals table first
-    // ===============================
-
-    // ===============================
-    // Phone variants for all formats
-    // ===============================
-
-    const phoneVariants = [
-      normalizedCustomerPhone,
-      `0${normalizedCustomerPhone}`,
-      `254${normalizedCustomerPhone}`,
-      `+254${normalizedCustomerPhone}`,
-    ];
-
-    // ===============================
     // Check referrals table
-    // Prevent customer who already has a normal referral
     // ===============================
 
-    const { data: existingReferralCustomer, error: referralCheckError } =
-      await supabase
-        .from("referrals")
-        .select("id")
-        .in("customer_phone", phoneVariants)
-        .limit(1);
+    console.log(
+      `🔍 Checking referrals table for phone: ${normalizedCustomerPhone}`,
+    );
+
+    const { data: referrals, error: referralCheckError } = await supabase
+      .from("referrals")
+      .select("id, customer_phone");
 
     if (referralCheckError) {
       console.error(
@@ -346,38 +336,65 @@ app.post("/api/referral", referralLimiter, async (req, res) => {
       return sendError(res, "0401");
     }
 
-    console.log("Existing referral customer:", existingReferralCustomer);
+    const referralDuplicate = referrals.find(
+      (record) =>
+        normalizeKenyanPhone(record.customer_phone) === normalizedCustomerPhone,
+    );
 
-    if (existingReferralCustomer && existingReferralCustomer.length > 0) {
+    if (referralDuplicate) {
+      console.log("❌ DUPLICATE FOUND IN referrals TABLE");
+      console.log({
+        existingId: referralDuplicate.id,
+        existingPhone: referralDuplicate.customer_phone,
+        checkedPhone: normalizedCustomerPhone,
+      });
+
       return sendError(res, "0302", { source: { field: "custPhone" } });
     }
 
+    console.log(
+      `✅ No duplicate found in referrals table for ${normalizedCustomerPhone}`,
+    );
+
     // ===============================
     // Check employee_referrals table
-    // Prevent duplicate employee referrals
     // ===============================
 
-    const { data: existingEmployeeReferral, error: employeeCheckError } =
-      await supabase
-        .from("employee_referrals")
-        .select("id")
-        .in("customer_phone", phoneVariants)
-        .limit(1);
+    console.log(
+      `🔍 Checking employee_referrals table for phone: ${normalizedCustomerPhone}`,
+    );
+
+    const { data: employeeReferrals, error: employeeCheckError } =
+      await supabase.from("employee_referrals").select("id, customer_phone");
 
     if (employeeCheckError) {
       console.error(
-        "❌ [0402] Employee referral check error:",
+        "❌ [0402] Employee referrals table check error:",
         employeeCheckError.message,
       );
 
       return sendError(res, "0402");
     }
 
-    console.log("Existing employee referral:", existingEmployeeReferral);
+    const employeeDuplicate = employeeReferrals.find(
+      (record) =>
+        normalizeKenyanPhone(record.customer_phone) === normalizedCustomerPhone,
+    );
 
-    if (existingEmployeeReferral && existingEmployeeReferral.length > 0) {
+    if (employeeDuplicate) {
+      console.log("❌ DUPLICATE FOUND IN employee_referrals TABLE");
+      console.log({
+        existingId: employeeDuplicate.id,
+        existingPhone: employeeDuplicate.customer_phone,
+        checkedPhone: normalizedCustomerPhone,
+      });
+
       return sendError(res, "0303", { source: { field: "custPhone" } });
     }
+
+    console.log(
+      `✅ No duplicate found in employee_referrals table for ${normalizedCustomerPhone}`,
+    );
 
     const { data, error } = await supabase
       .from("employee_referrals")
