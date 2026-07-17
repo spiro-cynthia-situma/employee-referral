@@ -27,7 +27,7 @@
         --radius-sm: 8px;
         --transition: 0.2s ease;
       }
- 
+
       /* ── Reset & base ─────────────────────────────────────────── */
       *,
       *::before,
@@ -36,7 +36,7 @@
         margin: 0;
         padding: 0;
       }
- 
+
       body {
         font-family: "Inter", "Segoe UI", system-ui, sans-serif;
         background: var(--black);
@@ -47,7 +47,7 @@
         align-items: center;
         padding: 24px 16px 60px;
       }
- 
+
       /* ── Ambient gradient ─────────────────────────────────────── */
       body::before {
         content: "";
@@ -63,7 +63,7 @@
         pointer-events: none;
         z-index: 0;
       }
- 
+
       /* ── Layout wrapper ───────────────────────────────────────── */
       .wrapper {
         position: relative;
@@ -71,7 +71,7 @@
         width: 100%;
         max-width: 560px;
       }
- 
+
       /* ── Header ───────────────────────────────────────────────── */
       .brand-header {
         display: flex;
@@ -80,19 +80,19 @@
         gap: 12px;
         margin-bottom: 32px;
       }
- 
+
       .logo-lockup {
         display: flex;
         align-items: center;
         gap: 10px;
       }
- 
+
       .spiro-logo {
         height: 56px;
         width: auto;
         display: block;
       }
- 
+
       .tagline {
         font-size: 13px;
         color: var(--text-sub);
@@ -100,7 +100,7 @@
         max-width: 320px;
         line-height: 1.5;
       }
- 
+
       /* ── Card ─────────────────────────────────────────────────── */
       .card {
         background: var(--card);
@@ -108,14 +108,14 @@
         border-radius: var(--radius);
         overflow: hidden;
       }
- 
+
       /* ── Card hero ────────────────────────────────────────────── */
       .card-hero {
         background: linear-gradient(135deg, #2b38f000 0%, #2b38f022 100%);
         border-bottom: 1px solid var(--border);
         padding: 28px 28px 24px;
       }
- 
+
       .hero-eyebrow {
         display: inline-flex;
         align-items: center;
@@ -131,7 +131,7 @@
         border-radius: 20px;
         margin-bottom: 12px;
       }
- 
+
       .hero-eyebrow::before {
         content: "";
         width: 6px;
@@ -140,7 +140,7 @@
         border-radius: 50%;
         animation: pulse 1.8s ease-in-out infinite;
       }
- 
+
       @keyframes pulse {
         0%,
         100% {
@@ -152,7 +152,7 @@
           transform: scale(0.7);
         }
       }
- 
+
       .card-hero h1 {
         font-size: clamp(20px, 5vw, 26px);
         font-weight: 800;
@@ -161,11 +161,11 @@
         letter-spacing: -0.3px;
         margin-bottom: 8px;
       }
- 
+
       .card-hero h1 .accent {
         color: var(--yellow);
       }
- 
+
       .card-hero p {
         font-size: 14px;
         color: var(--text-sub);
@@ -230,7 +230,7 @@
       .card-body {
         padding: 28px;
       }
- 
+
       /* ── Section header ───────────────────────────────────────── */
       .section-label {
         display: flex;
@@ -238,11 +238,11 @@
         gap: 10px;
         margin-bottom: 20px;
       }
- 
+
       .section-label + .field-group + .section-label {
         margin-top: 32px;
       }
- 
+
       .section-num {
         width: 26px;
         height: 26px;
@@ -256,7 +256,7 @@
         justify-content: center;
         flex-shrink: 0;
       }
- 
+
       .section-title {
         font-size: 13px;
         font-weight: 700;
@@ -265,40 +265,42 @@
         letter-spacing: 0.8px;
       }
 
-        select,
-    #userType,
-#bikeNumber {
-  width: 100%;
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-sm);
-  color: var(--white);
-  font-size: 16px;
-  padding: 13px 14px;
-  outline: none;
-  margin-top: 5px;
-  transition: border-color var(--transition), box-shadow var(--transition);
-}
- 
-/* dropdown options */
-#userType option {
-  background: var(--card);
-  color: var(--white);
-}
- 
-/* focus effect same as rest of form */
-#userType:focus,
-#bikeNumber:focus {
-  border-color: var(--blue);
-  box-shadow: 0 0 0 3px rgba(43, 56, 240, 0.18);
-}
- 
+      select,
+      #userType,
+      #bikeNumber {
+        width: 100%;
+        background: var(--surface);
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius-sm);
+        color: var(--white);
+        font-size: 16px;
+        padding: 13px 14px;
+        outline: none;
+        margin-top: 5px;
+        transition:
+          border-color var(--transition),
+          box-shadow var(--transition);
+      }
+
+      /* dropdown options */
+      #userType option {
+        background: var(--card);
+        color: var(--white);
+      }
+
+      /* focus effect same as rest of form */
+      #userType:focus,
+      #bikeNumber:focus {
+        border-color: var(--blue);
+        box-shadow: 0 0 0 3px rgba(43, 56, 240, 0.18);
+      }
+
       .section-divider {
         flex: 1;
         height: 1px;
         background: var(--border);
       }
- 
+
       /* ── Field group ──────────────────────────────────────────── */
       .field-group {
         display: flex;
@@ -306,30 +308,30 @@
         gap: 16px;
         margin-bottom: 8px;
       }
- 
+
       .field {
         display: flex;
         flex-direction: column;
         gap: 6px;
       }
- 
+
       label {
         font-size: 13px;
         font-weight: 600;
         color: var(--text);
       }
- 
+
       label .required-star {
         color: var(--green);
         margin-left: 2px;
       }
- 
+
       .hint {
         font-size: 12px;
         color: var(--muted);
         margin-top: -2px;
       }
- 
+
       /* ── Inputs ───────────────────────────────────────────────── */
       input[type="text"],
       input[type="tel"],
@@ -347,45 +349,45 @@
           box-shadow var(--transition);
         -webkit-appearance: none;
       }
- 
+
       input[type="text"]::placeholder,
       input[type="tel"]::placeholder,
       input[type="email"]::placeholder {
         color: var(--muted);
         font-size: 16px;
       }
- 
+
       input:focus {
         border-color: var(--blue);
         box-shadow: 0 0 0 3px rgba(43, 56, 240, 0.18);
       }
- 
+
       input:valid:not(:placeholder-shown) {
         border-color: rgba(43, 56, 240, 0.5);
       }
- 
+
       input.error {
         border-color: var(--error);
         box-shadow: 0 0 0 3px rgba(255, 77, 79, 0.12);
       }
- 
+
       .field-error {
         font-size: 12px;
         color: var(--error);
         display: none;
       }
- 
+
       .field-error.visible {
         display: block;
       }
- 
+
       /* ── Separator ────────────────────────────────────────────── */
       .section-spacer {
         height: 1px;
         background: var(--border);
         margin: 28px 0;
       }
- 
+
       /* ── Consent ──────────────────────────────────────────────── */
       .consent-block {
         background: rgba(43, 56, 240, 0.06);
@@ -394,13 +396,13 @@
         padding: 14px 16px;
         margin-bottom: 24px;
       }
- 
+
       .consent-row {
         display: flex;
         align-items: flex-start;
         gap: 10px;
       }
- 
+
       .consent-row input[type="checkbox"] {
         width: 22px;
         height: 22px;
@@ -409,7 +411,7 @@
         flex-shrink: 0;
         cursor: pointer;
       }
- 
+
       .consent-row label {
         font-size: 13px;
         color: var(--text-sub);
@@ -417,7 +419,7 @@
         cursor: pointer;
         line-height: 1.5;
       }
- 
+
       /* ── Submit button ────────────────────────────────────────── */
       .btn-submit {
         width: 100%;
@@ -439,27 +441,27 @@
         justify-content: center;
         gap: 8px;
       }
- 
+
       .btn-submit:hover:not(:disabled) {
         background: var(--blue-dark);
         box-shadow: 0 4px 20px rgba(43, 56, 240, 0.45);
         transform: translateY(-1px);
       }
- 
+
       .btn-submit:active:not(:disabled) {
         transform: translateY(0);
       }
- 
+
       .btn-submit:disabled {
         opacity: 0.5;
         cursor: not-allowed;
       }
- 
+
       .btn-submit svg {
         width: 18px;
         height: 18px;
       }
- 
+
       /* ── Privacy note ─────────────────────────────────────────── */
       .privacy-block {
         margin-top: 20px;
@@ -468,21 +470,21 @@
         border-radius: var(--radius-sm);
         padding: 14px 16px;
       }
- 
+
       .privacy-block-header {
         display: flex;
         align-items: center;
         gap: 7px;
         margin-bottom: 8px;
       }
- 
+
       .privacy-block-header svg {
         width: 14px;
         height: 14px;
         color: var(--muted);
         flex-shrink: 0;
       }
- 
+
       .privacy-block-title {
         font-size: 11px;
         font-weight: 700;
@@ -490,25 +492,25 @@
         text-transform: uppercase;
         letter-spacing: 0.8px;
       }
- 
+
       .privacy-block-body {
         font-size: 12px;
         color: var(--muted);
         line-height: 1.65;
         margin-bottom: 12px;
       }
- 
+
       .privacy-block-body strong {
         color: var(--text-sub);
         font-weight: 600;
       }
- 
+
       .privacy-links {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
       }
- 
+
       .privacy-link {
         display: inline-flex;
         align-items: center;
@@ -526,13 +528,13 @@
           color var(--transition),
           background var(--transition);
       }
- 
+
       .privacy-link:hover {
         color: var(--white);
         border-color: var(--muted);
         background: rgba(255, 255, 255, 0.07);
       }
- 
+
       /* ── Success state ────────────────────────────────────────── */
       .success-screen {
         display: none;
@@ -542,68 +544,68 @@
         padding: 48px 28px;
         gap: 16px;
       }
- 
+
       .success-screen.visible {
         display: flex;
       }
 
-.reward-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  margin-top: 5px;
-  padding: 12px 14px;
+      .reward-card {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        margin-top: 5px;
+        padding: 12px 14px;
 
-  background: linear-gradient(135deg, #f3fff0, #e8fbe2);
-  border-radius: 14px;
-  border: 1px solid #d4efc7;
+        background: linear-gradient(135deg, #f3fff0, #e8fbe2);
+        border-radius: 14px;
+        border: 1px solid #d4efc7;
 
-  box-shadow: 0 4px 10px rgba(122, 193, 67, 0.1);
+        box-shadow: 0 4px 10px rgba(122, 193, 67, 0.1);
 
-  font-family: "Inter", "Segoe UI", sans-serif;
-}
+        font-family: "Inter", "Segoe UI", sans-serif;
+      }
 
-.reward-icon {
-  width: 42px;
-  height: 42px;
-  min-width: 42px;
+      .reward-icon {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
 
-  border-radius: 12px;
-  background: linear-gradient(135deg, #7AC143, #95d46b);
+        border-radius: 12px;
+        background: linear-gradient(135deg, #7ac143, #95d46b);
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-  color: white;
-  font-size: 20px;
+        color: white;
+        font-size: 20px;
 
-  box-shadow: 0 3px 8px rgba(122,193,67,0.2);
-}
+        box-shadow: 0 3px 8px rgba(122, 193, 67, 0.2);
+      }
 
-.reward-content {
-  flex: 1;
-}
+      .reward-content {
+        flex: 1;
+      }
 
-.reward-content h3 {
-  margin: 0 0 4px;
+      .reward-content h3 {
+        margin: 0 0 4px;
 
-  font-size: 14px;
-  font-weight: 700;
+        font-size: 14px;
+        font-weight: 700;
 
-  color: #2d5a27;
-}
+        color: #2d5a27;
+      }
 
-.reward-content p {
-  margin: 0;
+      .reward-content p {
+        margin: 0;
 
-  font-size: 12px;
-  line-height: 1.5;
+        font-size: 12px;
+        line-height: 1.5;
 
-  color: #557255;
-}
- 
+        color: #557255;
+      }
+
       .success-icon {
         width: 72px;
         height: 72px;
@@ -613,26 +615,26 @@
         align-items: center;
         justify-content: center;
       }
- 
+
       .success-icon svg {
         width: 36px;
         height: 36px;
         color: var(--green-dark);
       }
- 
+
       .success-screen h2 {
         font-size: 22px;
         font-weight: 800;
         color: var(--white);
       }
- 
+
       .success-screen p {
         font-size: 14px;
         color: var(--text-sub);
         max-width: 340px;
         line-height: 1.6;
       }
- 
+
       .btn-new {
         margin-top: 8px;
         background: transparent;
@@ -647,12 +649,12 @@
           background var(--transition),
           color var(--transition);
       }
- 
+
       .btn-new:hover {
         background: var(--green);
         color: var(--black);
       }
- 
+
       /* ── First-come note ───────────────────────────────────────── */
       .first-come-note {
         margin-bottom: 10px;
@@ -661,7 +663,7 @@
         font-weight: 500;
         text-align: center;
       }
- 
+
       /* ── Footer ───────────────────────────────────────────────── */
       .page-footer {
         margin-top: 24px;
@@ -669,11 +671,11 @@
         font-size: 12px;
         color: var(--muted);
       }
- 
+
       .page-footer strong {
         color: var(--text-sub);
       }
- 
+
       /* ── Responsive ───────────────────────────────────────────── */
       @media (max-width: 420px) {
         .card-hero,
@@ -702,17 +704,19 @@
           />
         </div>
       </header>
- 
+
       <!-- Card -->
       <div class="card">
         <!-- Hero -->
 
         <div class="card-hero">
           <div class="hero-eyebrow">Spiro Refer and earn Program</div>
-          <h1><span class="accent"> Refer a Customer and Earn Instantly with Spiro</span></h1>
-          <p>
-            Uko na customer? Jaza details, sisi tunahandle!.
-          </p>
+          <h1>
+            <span class="accent">
+              Refer a Customer and Earn Instantly with Spiro</span
+            >
+          </h1>
+          <p>Uko na customer? Jaza details, sisi tunahandle!.</p>
           <div class="countdown" id="countdown">
             <div class="countdown-label">Offer inaisha 31 July</div>
             <div class="countdown-timer">
@@ -735,7 +739,7 @@
             </div>
           </div>
         </div>
- 
+
         <!-- Form body -->
         <div class="card-body">
           <form id="referralForm" novalidate>
@@ -757,7 +761,7 @@
               >
               <div class="section-divider"></div>
             </div>
- 
+
             <div class="field-group">
               <div class="field">
                 <label for="refName"
@@ -775,7 +779,7 @@
                   >Please enter your full name.</span
                 >
               </div>
- 
+
               <div class="field">
                 <label for="refId"
                   >Your National ID Number
@@ -797,7 +801,7 @@
                   >Enter a valid ID number (7–10 digits).</span
                 >
               </div>
- 
+
               <div class="field">
                 <label for="refPhone"
                   >Your Phone Number <span class="required-star">*</span></label
@@ -819,81 +823,77 @@
                 >
               </div>
 
+              <!-- Reward Card -->
 
-               <!-- Reward Card -->
+              <div class="field">
+                <label for="department">
+                  Department <span class="required-star">*</span>
+                </label>
 
- 
-<div class="field">
-  <label for="department">
-    Department <span class="required-star">*</span>
-  </label>
+                <select id="department" name="department" required>
+                  <option value="">Select Department</option>
 
-  <select id="department" name="department" required>
-    <option value="">Select Department</option>
+                  <option value="energy">Energy</option>
+                  <option value="hr_admin">HR and Admin</option>
+                  <option value="it">IT</option>
+                  <option value="tech_ops_iot">Tech Ops &amp; IoT</option>
+                  <option value="cyber_security_ehs">
+                    Cyber Security &amp; EHS
+                  </option>
+                  <option value="legal">Legal</option>
+                  <option value="customer_service">Customer Service</option>
+                  <option value="manufacturing">Manufacturing</option>
+                  <option value="logistics_procurement">
+                    Logistics &amp; Procurement
+                  </option>
+                  <option value="aftersales">Aftersales</option>
+                  <option value="marketing_pr">Marketing &amp; PR</option>
+                  <option value="finance">Finance</option>
+                </select>
 
-    <option value="energy">Energy</option>
-    <option value="hr_admin">HR and Admin</option>
-    <option value="it">IT</option>
-    <option value="tech_ops_iot">Tech Ops &amp; IoT</option>
-    <option value="cyber_security_ehs">Cyber Security &amp; EHS</option>
-    <option value="legal">Legal</option>
-    <option value="customer_service">Customer Service</option>
-    <option value="manufacturing">Manufacturing</option>
-    <option value="logistics_procurement">Logistics &amp; Procurement</option>
-    <option value="aftersales">Aftersales</option>
-    <option value="marketing_pr">Marketing &amp; PR</option>
-    <option value="finance">Finance</option>
-</select>
+                <span class="hint"> Select the department you belong to. </span>
 
-  <span class="hint">
-    Select the department you belong to.
-  </span>
+                <span class="field-error" id="departmentErr">
+                  Please select a department.
+                </span>
+              </div>
 
-  <span class="field-error" id="departmentErr">
-    Please select a department.
-  </span>
-</div>
+              <div class="field" id="referralField" style="display: none">
+                <label for="referralCode">
+                  Referral Code <span class="required-star">*</span>
+                </label>
 
+                <input
+                  type="text"
+                  id="referralCode"
+                  name="referralCode"
+                  placeholder="e.g. CX-002"
+                  maxlength="20"
+                />
 
+                <span class="field-error" id="referralCodeErr">
+                  Referral code is required for Customer Service.
+                </span>
+              </div>
 
-<div class="field" id="referralField" style="display:none;">
-  <label for="referralCode">
-    Referral Code <span class="required-star">*</span>
-  </label>
+              <div id="rewardContainer">
+                <div id="rewardCard" class="reward-card">
+                  <div class="reward-icon" id="rewardIcon">💰</div>
 
-  <input
-    type="text"
-    id="referralCode"
-    name="referralCode"
-    placeholder="e.g. CX-002"
-    maxlength="20"
-  />
+                  <div class="reward-content">
+                    <h3 id="rewardTitle">You'll earn KSh 1,500</h3>
+                    <p id="rewardText">
+                      You'll earn KSh 1,500 (sent via M-Pesa) once your referred
+                      customer successfully joins Spiro..
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-  <span class="field-error" id="referralCodeErr">
-    Referral code is required for Customer Service.
-  </span>
-</div>
-
-<div id="rewardContainer" >
-
-  <div id="rewardCard" class="reward-card">
-    <div class="reward-icon" id="rewardIcon">💰</div>
-
-    <div class="reward-content">
-      <h3 id="rewardTitle">You'll earn KSh 1,500</h3>
-      <p id="rewardText">
-        You'll earn KSh 1,500 (sent via M-Pesa) once your referred customer successfully joins Spiro..
-      </p>
-    </div>
-  </div>
-
-</div>
-
-   <div class="input-box" id="inputBox"></div>
-
-</div>   
+              <div class="input-box" id="inputBox"></div>
+            </div>
             <div class="section-spacer"></div>
- 
+
             <!-- Section 2: New Customer -->
             <div class="section-label">
               <div class="section-num">2</div>
@@ -912,11 +912,12 @@
               >
               <div class="section-divider"></div>
             </div>
- 
+
             <div class="field-group">
               <div class="field">
-                <label for="custName"
-                  > Referred individual Full Name <span class="required-star">*</span></label
+                <label for="custName">
+                  Referred individual Full Name
+                  <span class="required-star">*</span></label
                 >
                 <input
                   type="text"
@@ -929,7 +930,7 @@
                   >Please enter the customer's full name.</span
                 >
               </div>
- 
+
               <div class="field">
                 <label for="custPhone"
                   >Referred individual's Phone Number
@@ -950,14 +951,9 @@
                   >Enter a valid Kenyan phone number.</span
                 >
               </div>
-
-              
-
             </div>
- 
+
             <div class="section-spacer"></div>
-
-
 
             <div class="privacy-block">
               <div class="privacy-block-header">
@@ -987,57 +983,74 @@
                 access, correct, or request deletion of your data at any time.
               </p>
 
-<div class="consent-row" style="margin-bottom: 12px;">
-<input type="checkbox" id="refereeConsent" name="refereeConsent" />
-<label for="refereeConsent">
-  The customer is aware that you are sharing their details with Spiro
-      
-</label>
-<span class="field-error" id="refereeConsentErr">
-  Please confirm that the customer has agreed.
-</span>
-</div>
- 
-  <!-- Checkbox 2 -->
-<div class="consent-row">
-<input type="checkbox" id="privacyConsent" name="privacyConsent" />
-<label for="privacyConsent">
-The customer has agreed to be contacted by Spiro regarding its products and services.
-</label>
-<span class="field-error" id="privacyConsentErr">
-  Please confirm you have read the Privacy Notice.
-</span>
-</div>
+              <div class="consent-row" style="margin-bottom: 12px">
+                <input
+                  type="checkbox"
+                  id="refereeConsent"
+                  name="refereeConsent"
+                />
+                <label for="refereeConsent">
+                  The customer is aware that you are sharing their details with
+                  Spiro
+                </label>
+                <span class="field-error" id="refereeConsentErr">
+                  Please confirm that the customer has agreed.
+                </span>
+              </div>
 
-<!-- Checkbox 3: User Consent -->
-<div class="consent-row" style="margin-bottom: 12px;">
-  <input type="checkbox" id="userConsent" name="userConsent" />
-  <label for="userConsent">
-    The information provided is accurate to the best of your knowledge.
-  </label>
-  <span class="field-error" id="userConsentErr">
-    Please confirm user consent.
-  </span>
-</div>
+              <!-- Checkbox 2 -->
+              <div class="consent-row">
+                <input
+                  type="checkbox"
+                  id="privacyConsent"
+                  name="privacyConsent"
+                />
+                <label for="privacyConsent">
+                  The customer has agreed to be contacted by Spiro regarding its
+                  products and services.
+                </label>
+                <span class="field-error" id="privacyConsentErr">
+                  Please confirm you have read the Privacy Notice.
+                </span>
+              </div>
 
-<!-- Checkbox 4: Data Processing -->
-<div class="consent-row">
-  <input type="checkbox" id="dataProcessingConsent" name="dataProcessingConsent" />
-  <label for="dataProcessingConsent">
-    You have read and understood the Privacy Notice.
-  </label>
-  <span class="field-error" id="dataProcessingConsentErr">
-    Please confirm data processing consent.
-  </span>
-</div>
+              <!-- Checkbox 3: User Consent -->
+              <div class="consent-row" style="margin-bottom: 12px">
+                <input type="checkbox" id="userConsent" name="userConsent" />
+                <label for="userConsent">
+                  The information provided is accurate to the best of your
+                  knowledge.
+                </label>
+                <span class="field-error" id="userConsentErr">
+                  Please confirm user consent.
+                </span>
+              </div>
 
-<div class="confirmation-row" style="margin-bottom: 20px; margin-left: 20px;margin-top :20px;">
-  <label for="confirmation-row">
-    You may request access to, correction of, or deletion of your personal data at any time,
-    subject to applicable legal and regulatory requirements
-  </label>
-</div>
+              <!-- Checkbox 4: Data Processing -->
+              <div class="consent-row">
+                <input
+                  type="checkbox"
+                  id="dataProcessingConsent"
+                  name="dataProcessingConsent"
+                />
+                <label for="dataProcessingConsent">
+                  You have read and understood the Privacy Notice.
+                </label>
+                <span class="field-error" id="dataProcessingConsentErr">
+                  Please confirm data processing consent.
+                </span>
+              </div>
 
+              <div
+                class="confirmation-row"
+                style="margin-bottom: 20px; margin-left: 20px; margin-top: 20px"
+              >
+                <label for="confirmation-row">
+                  You may request access to, correction of, or deletion of your
+                  personal data at any time, subject to applicable legal and
+                  regulatory requirements
+                </label>
+              </div>
 
               <div class="privacy-links">
                 <a href="mailto:dpo@spironet.com" class="privacy-link">
@@ -1106,27 +1119,30 @@ The customer has agreed to be contacted by Spiro regarding its products and serv
                 </a>
               </div>
             </div>
- 
-           <!-- Consent -->
 
- 
+            <!-- Consent -->
+
             <!-- Submit -->
-            <p class="first-come-note" style="margin-top: 16px;"> First agent to submit customer details will be eligible for the
+            <p class="first-come-note" style="margin-top: 16px">
+              First agent to submit customer details will be eligible for the
               reward.
             </p>
-            <p class="program-disclaimer"
-                    style="
-                      margin-bottom: 14px;
-                      font-size: 12px;
-                      color: var(--yellow);
-                      font-weight: 700;
-                      font-style: italic;
-                      text-align: center;
-                      line-height: 1.5;
-                    ">
-              Disclaimer: The Spiro Refer and Earn Program is valid for a limited period of
-              two (2) months from the official launch date. Spiro reserves the right to
-              modify, extend, or terminate the program at its discretion.
+            <p
+              class="program-disclaimer"
+              style="
+                margin-bottom: 14px;
+                font-size: 12px;
+                color: var(--yellow);
+                font-weight: 700;
+                font-style: italic;
+                text-align: center;
+                line-height: 1.5;
+              "
+            >
+              Disclaimer: The Spiro Refer and Earn Program is valid for a
+              limited period of two (2) months from the official launch date.
+              Spiro reserves the right to modify, extend, or terminate the
+              program at its discretion.
             </p>
             <button type="submit" class="btn-submit" id="submitBtn">
               <svg
@@ -1144,10 +1160,8 @@ The customer has agreed to be contacted by Spiro regarding its products and serv
               </svg>
               Submit Referral
             </button>
- 
-            
           </form>
- 
+
           <!-- Success state -->
           <div class="success-screen" id="successScreen">
             <div class="success-icon">
@@ -1177,11 +1191,10 @@ The customer has agreed to be contacted by Spiro regarding its products and serv
           </div>
         </div>
       </div>
- 
+
       <!-- Page footer -->
       <footer class="page-footer">
         &copy; Spiro &mdash; Africa's Largest Electric Mobility Network.
- 
         Questions?
         <a
           href="mailto:support@spironet.com"
@@ -1190,316 +1203,338 @@ The customer has agreed to be contacted by Spiro regarding its products and serv
         >
       </footer>
     </div>
- 
-   <script>
-(function () {
-  "use strict";
 
-  const form = document.getElementById("referralForm");
-  const submitBtn = document.getElementById("submitBtn");
-  const successDiv = document.getElementById("successScreen");
-  const newBtn = document.getElementById("newReferralBtn");
+    <script>
+      (function () {
+        "use strict";
 
-  /* ── Validation helpers ───────────────────────────────── */
-  const rules = {
-    refName: {
-      test: (v) => v.trim().split(/\s+/).length >= 2,
-      msg: "Please enter your full name (first and last).",
-    },
-    refId: {
-      test: (v) => /^\d{7,10}$/.test(v.trim()),
-      msg: "Enter a valid ID number (7–10 digits).",
-    },
-    refPhone: {
-      test: (v) => /^(?:\+254|0)[17]\d{8}$/.test(v.replace(/\s/g, "")),
-      msg: "Enter a valid Kenyan phone number (e.g. 0712345678).",
-    },
-    custName: {
-      test: (v) => v.trim().split(/\s+/).length >= 2,
-      msg: "Please enter the customer's full name (first and last).",
-    },
-    custPhone: {
-      test: (v) => /^(?:\+254|0)[17]\d{8}$/.test(v.replace(/\s/g, "")),
-      msg: "Enter a valid Kenyan phone number (e.g. 0712345678).",
-    },
-   
+        const form = document.getElementById("referralForm");
+        const submitBtn = document.getElementById("submitBtn");
+        const successDiv = document.getElementById("successScreen");
+        const newBtn = document.getElementById("newReferralBtn");
 
-    department: {
-      test: (v) => v.trim() !== "",
-      msg: "Please select a department.",
-    }
-    ,
+        /* ── Validation helpers ───────────────────────────────── */
+        const rules = {
+          refName: {
+            test: (v) => v.trim().split(/\s+/).length >= 2,
+            msg: "Please enter your full name (first and last).",
+          },
+          refId: {
+            test: (v) => /^\d{7,10}$/.test(v.trim()),
+            msg: "Enter a valid ID number (7–10 digits).",
+          },
+          refPhone: {
+            test: (v) => /^(?:\+254|0)[17]\d{8}$/.test(v.replace(/\s/g, "")),
+            msg: "Enter a valid Kenyan phone number (e.g. 0712345678).",
+          },
+          custName: {
+            test: (v) => v.trim().split(/\s+/).length >= 2,
+            msg: "Please enter the customer's full name (first and last).",
+          },
+          custPhone: {
+            test: (v) => /^(?:\+254|0)[17]\d{8}$/.test(v.replace(/\s/g, "")),
+            msg: "Enter a valid Kenyan phone number (e.g. 0712345678).",
+          },
 
-  };
+          department: {
+            test: (v) => v.trim() !== "",
+            msg: "Please select a department.",
+          },
+        };
 
-  function showError(id, msg) {
-    const el = document.getElementById(id + "Err");
-    const input = document.getElementById(id);
+        function showError(id, msg) {
+          const el = document.getElementById(id + "Err");
+          const input = document.getElementById(id);
 
-    if (el) {
-      el.textContent = msg;
-      el.classList.add("visible");
-    }
-    if (input) input.classList.add("error");
-  }
-
-  function clearError(id) {
-    const el = document.getElementById(id + "Err");
-    const input = document.getElementById(id);
-
-    if (el) el.classList.remove("visible");
-    if (input) input.classList.remove("error");
-  }
-
-  /* ── Live validation ───────────────────────────────── */
-  Object.keys(rules).forEach((id) => {
-    const input = document.getElementById(id);
-    if (!input) return;
-
-    input.addEventListener("blur", () => {
-      if (!rules[id].test(input.value)) {
-        showError(id, rules[id].msg);
-      } else {
-        clearError(id);
-      }
-    });
-
-    input.addEventListener("input", () => {
-      if (input.classList.contains("error") && rules[id].test(input.value)) {
-        clearError(id);
-      }
-    });
-  });
-
-
-  const department = document.getElementById("department");
-  const referralField = document.getElementById("referralField");
-
-department.addEventListener("change", function () {
-  if (this.value === "customer_service") {
-    referralField.style.display = "block";
-  } else {
-    referralField.style.display = "none";
-
-    // IMPORTANT: clear value when hidden
-    document.getElementById("referralCode").value = "";
-  }
-});
-
-  /* ── Submit ──────────────────────────────────────── */
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    let valid = true;
-
-    Object.keys(rules).forEach((id) => {
-      const input = document.getElementById(id);
-      if (!input) return;
-
-      if (!rules[id].test(input.value)) {
-        showError(id, rules[id].msg);
-        valid = false;
-      } else {
-        clearError(id);
-      }
-    });
-
-  
-
-    const refereeConsent = document.getElementById("refereeConsent");
-    const refereeConsentErr = document.getElementById("refereeConsentErr");
-    const privacyConsent = document.getElementById("privacyConsent");
-    const privacyConsentErr = document.getElementById("privacyConsentErr");
-    const userConsent = document.getElementById("userConsent");
-    const dataProcessingConsent = document.getElementById("dataProcessingConsent");
-    const userConsentErr = document.getElementById("userConsentErr");
-    const dataProcessingConsentErr = document.getElementById("dataProcessingConsentErr");
-
-
-    if (!refereeConsent.checked) {
-      refereeConsent.style.outline = "2px solid var(--error)";
-      refereeConsentErr.style.display = "block";
-      valid = false;
-    } else {
-      refereeConsent.style.outline = "";
-      refereeConsentErr.style.display = "none";
-    }
-
-    if (!privacyConsent.checked) {
-      privacyConsent.style.outline = "2px solid var(--error)";
-      privacyConsentErr.style.display = "block";
-      valid = false;
-    } else {
-      privacyConsent.style.outline = "";
-      privacyConsentErr.style.display = "none";
-    }
-
-    if (!userConsent.checked) {
-         userConsent.style.outline = "2px solid var(--error)";
-         userConsentErr.style.display = "block";
-          valid = false;
-        } else {
-        userConsent.style.outline = "";
-        userConsentErr.style.display = "none";
-         }
-
-      if (!dataProcessingConsent.checked) {
-      dataProcessingConsent.style.outline = "2px solid var(--error)";
-      dataProcessingConsentErr.style.display = "block";
-       valid = false;
-        } else {
-          dataProcessingConsent.style.outline = "";
-          dataProcessingConsentErr.style.display = "none";
-       }
-
-
-
-
-
-const departmentValue = document.getElementById("department").value;
-
-if (departmentValue === "customer_service") {
-  const referralValue = document.getElementById("referralCode").value.trim();
-
-  if (!referralValue) {
-    showError("referralCode", "Referral code is required for Customer Service.");
-    valid = false;
-  }
-}
-
-    if (!valid) return;
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Submitting…";
-
-
-const payload = {
-  refName: document.getElementById("refName").value.trim(),
-  refId: document.getElementById("refId").value.trim(),
-  refPhone: document.getElementById("refPhone").value.trim(),
-  department: departmentValue,
-
-  referralCode:
-    departmentValue === "customer_service"
-      ? document.getElementById("referralCode").value.trim()
-      : null,
-
-  custName: document.getElementById("custName").value.trim(),
-  custPhone: document.getElementById("custPhone").value.trim(),
-
-  refereeConsent: refereeConsent.checked,
-  privacyConsent: privacyConsent.checked,
-  userConsent: document.getElementById("userConsent").checked,
-  dataProcessingConsent: document.getElementById("dataProcessingConsent").checked,
-
-};
-
-    const SUBMIT_LABEL = `
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-      </svg>
-      Submit Referral`;
-
-      console.log("🔥 referralCode element:", document.getElementById("referralCode"));
-console.log("🔥 referralCode value:", document.getElementById("referralCode")?.value);
-
-    try {
-      const res = await fetch("/api/referral", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      const data = await res.json().catch(() => ({}));
-
-      if (!res.ok) {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = SUBMIT_LABEL;
-
-        let banner = document.getElementById("submitErrBanner");
-        if (!banner) {
-          banner = document.createElement("p");
-          banner.id = "submitErrBanner";
-          banner.style.cssText =
-            "color:#FF4D4F;font-size:13px;text-align:center;margin-top:12px;";
-          submitBtn.insertAdjacentElement("afterend", banner);
+          if (el) {
+            el.textContent = msg;
+            el.classList.add("visible");
+          }
+          if (input) input.classList.add("error");
         }
 
-        banner.textContent =
-          data.error || "Submission failed. Please try again.";
-        return;
-      }
+        function clearError(id) {
+          const el = document.getElementById(id + "Err");
+          const input = document.getElementById(id);
 
-      form.style.display = "none";
-      successDiv.classList.add("visible");
-      successDiv.scrollIntoView({ behavior: "smooth" });
+          if (el) el.classList.remove("visible");
+          if (input) input.classList.remove("error");
+        }
 
-    } catch (err) {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = SUBMIT_LABEL;
+        /* ── Live validation ───────────────────────────────── */
+        Object.keys(rules).forEach((id) => {
+          const input = document.getElementById(id);
+          if (!input) return;
 
-      let banner = document.getElementById("submitErrBanner");
-      if (!banner) {
-        banner = document.createElement("p");
-        banner.id = "submitErrBanner";
-        banner.style.cssText =
-          "color:#FF4D4F;font-size:13px;text-align:center;margin-top:12px;";
-        submitBtn.insertAdjacentElement("afterend", banner);
-      }
+          input.addEventListener("blur", () => {
+            if (!rules[id].test(input.value)) {
+              showError(id, rules[id].msg);
+            } else {
+              clearError(id);
+            }
+          });
 
-      banner.textContent = "Connection error. Please try again.";
-    }
-  });
+          input.addEventListener("input", () => {
+            if (
+              input.classList.contains("error") &&
+              rules[id].test(input.value)
+            ) {
+              clearError(id);
+            }
+          });
+        });
 
-  /* ── Reset ──────────────────────────────────────── */
-  newBtn.addEventListener("click", () => {
-    form.reset();
-    Object.keys(rules).forEach((id) => clearError(id));
+        const department = document.getElementById("department");
+        const referralField = document.getElementById("referralField");
 
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = `
+        department.addEventListener("change", function () {
+          if (this.value === "customer_service") {
+            referralField.style.display = "block";
+          } else {
+            referralField.style.display = "none";
+
+            // IMPORTANT: clear value when hidden
+            document.getElementById("referralCode").value = "";
+          }
+        });
+
+        /* ── Submit ──────────────────────────────────────── */
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          let valid = true;
+
+          Object.keys(rules).forEach((id) => {
+            const input = document.getElementById(id);
+            if (!input) return;
+
+            if (!rules[id].test(input.value)) {
+              showError(id, rules[id].msg);
+              valid = false;
+            } else {
+              clearError(id);
+            }
+          });
+
+          const refereeConsent = document.getElementById("refereeConsent");
+          const refereeConsentErr =
+            document.getElementById("refereeConsentErr");
+          const privacyConsent = document.getElementById("privacyConsent");
+          const privacyConsentErr =
+            document.getElementById("privacyConsentErr");
+          const userConsent = document.getElementById("userConsent");
+          const dataProcessingConsent = document.getElementById(
+            "dataProcessingConsent",
+          );
+          const userConsentErr = document.getElementById("userConsentErr");
+          const dataProcessingConsentErr = document.getElementById(
+            "dataProcessingConsentErr",
+          );
+
+          if (!refereeConsent.checked) {
+            refereeConsent.style.outline = "2px solid var(--error)";
+            refereeConsentErr.style.display = "block";
+            valid = false;
+          } else {
+            refereeConsent.style.outline = "";
+            refereeConsentErr.style.display = "none";
+          }
+
+          if (!privacyConsent.checked) {
+            privacyConsent.style.outline = "2px solid var(--error)";
+            privacyConsentErr.style.display = "block";
+            valid = false;
+          } else {
+            privacyConsent.style.outline = "";
+            privacyConsentErr.style.display = "none";
+          }
+
+          if (!userConsent.checked) {
+            userConsent.style.outline = "2px solid var(--error)";
+            userConsentErr.style.display = "block";
+            valid = false;
+          } else {
+            userConsent.style.outline = "";
+            userConsentErr.style.display = "none";
+          }
+
+          if (!dataProcessingConsent.checked) {
+            dataProcessingConsent.style.outline = "2px solid var(--error)";
+            dataProcessingConsentErr.style.display = "block";
+            valid = false;
+          } else {
+            dataProcessingConsent.style.outline = "";
+            dataProcessingConsentErr.style.display = "none";
+          }
+
+          const departmentValue = document.getElementById("department").value;
+
+          if (departmentValue === "customer_service") {
+            const referralValue = document
+              .getElementById("referralCode")
+              .value.trim();
+
+            if (!referralValue) {
+              showError(
+                "referralCode",
+                "Referral code is required for Customer Service.",
+              );
+              valid = false;
+            }
+          }
+
+          if (!valid) return;
+
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Submitting…";
+
+          const payload = {
+            refName: document.getElementById("refName").value.trim(),
+            refId: document.getElementById("refId").value.trim(),
+            refPhone: document.getElementById("refPhone").value.trim(),
+            department: departmentValue,
+
+            referralCode:
+              departmentValue === "customer_service"
+                ? document.getElementById("referralCode").value.trim()
+                : null,
+
+            custName: document.getElementById("custName").value.trim(),
+            custPhone: document.getElementById("custPhone").value.trim(),
+
+            refereeConsent: refereeConsent.checked,
+            privacyConsent: privacyConsent.checked,
+            userConsent: document.getElementById("userConsent").checked,
+            dataProcessingConsent: document.getElementById(
+              "dataProcessingConsent",
+            ).checked,
+          };
+
+          const SUBMIT_LABEL = `
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
       </svg>
       Submit Referral`;
 
-    successDiv.classList.remove("visible");
-    form.style.display = "";
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+          console.log(
+            "🔥 referralCode element:",
+            document.getElementById("referralCode"),
+          );
+          console.log(
+            "🔥 referralCode value:",
+            document.getElementById("referralCode")?.value,
+          );
 
-})();
+          try {
+            const res = await fetch("/api/referral", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload),
+            });
 
-/* ── Countdown to 31 July ─────────────────────────────────── */
-(() => {
-  const deadline = new Date("2026-07-31T23:59:59+03:00").getTime();
-  const els = {
-    days: document.getElementById("cdDays"),
-    hours: document.getElementById("cdHours"),
-    mins: document.getElementById("cdMins"),
-    secs: document.getElementById("cdSecs"),
-  };
-  const pad = (n) => String(n).padStart(2, "0");
+            const data = await res.json().catch(() => ({}));
 
-  function tick() {
-    const diff = deadline - Date.now();
-    if (diff <= 0) {
-      document.getElementById("countdown").innerHTML =
-        '<div class="countdown-ended">Offer imeisha!</div>';
-      clearInterval(timer);
-      return;
-    }
-    els.days.textContent = pad(Math.floor(diff / 86400000));
-    els.hours.textContent = pad(Math.floor(diff / 3600000) % 24);
-    els.mins.textContent = pad(Math.floor(diff / 60000) % 60);
-    els.secs.textContent = pad(Math.floor(diff / 1000) % 60);
-  }
+            if (!res.ok) {
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = SUBMIT_LABEL;
 
-  const timer = setInterval(tick, 1000);
-  tick();
-})();
-</script>
+              let banner = document.getElementById("submitErrBanner");
+              if (!banner) {
+                banner = document.createElement("p");
+                banner.id = "submitErrBanner";
+                banner.style.cssText =
+                  "color:#FF4D4F;font-size:13px;text-align:center;margin-top:12px;";
+                submitBtn.insertAdjacentElement("afterend", banner);
+              }
+
+              const errors = Array.isArray(data.errors) ? data.errors : [];
+              let bannerMsg = "";
+
+              errors.forEach((e) => {
+                const field = e.source && e.source.field;
+
+                if (field && document.getElementById(field + "Err")) {
+                  showError(field, e.detail);
+                } else if (!bannerMsg) {
+                  bannerMsg = e.detail;
+                }
+              });
+
+              if (!bannerMsg && errors.length) {
+                bannerMsg = "Check the highlighted fields and try again.";
+              }
+
+              banner.textContent =
+                bannerMsg || "Submission failed. Please try again.";
+              return;
+            }
+
+            form.style.display = "none";
+            successDiv.classList.add("visible");
+            successDiv.scrollIntoView({ behavior: "smooth" });
+          } catch (err) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = SUBMIT_LABEL;
+
+            let banner = document.getElementById("submitErrBanner");
+            if (!banner) {
+              banner = document.createElement("p");
+              banner.id = "submitErrBanner";
+              banner.style.cssText =
+                "color:#FF4D4F;font-size:13px;text-align:center;margin-top:12px;";
+              submitBtn.insertAdjacentElement("afterend", banner);
+            }
+
+            banner.textContent = "Connection error. Please try again.";
+          }
+        });
+
+        /* ── Reset ──────────────────────────────────────── */
+        newBtn.addEventListener("click", () => {
+          form.reset();
+          Object.keys(rules).forEach((id) => clearError(id));
+
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+      </svg>
+      Submit Referral`;
+
+          successDiv.classList.remove("visible");
+          form.style.display = "";
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      })();
+
+      /* ── Countdown to 31 July ─────────────────────────────────── */
+      (() => {
+        const deadline = new Date("2026-07-31T23:59:59+03:00").getTime();
+        const els = {
+          days: document.getElementById("cdDays"),
+          hours: document.getElementById("cdHours"),
+          mins: document.getElementById("cdMins"),
+          secs: document.getElementById("cdSecs"),
+        };
+        const pad = (n) => String(n).padStart(2, "0");
+
+        function tick() {
+          const diff = deadline - Date.now();
+          if (diff <= 0) {
+            document.getElementById("countdown").innerHTML =
+              '<div class="countdown-ended">Offer imeisha!</div>';
+            clearInterval(timer);
+            return;
+          }
+          els.days.textContent = pad(Math.floor(diff / 86400000));
+          els.hours.textContent = pad(Math.floor(diff / 3600000) % 24);
+          els.mins.textContent = pad(Math.floor(diff / 60000) % 60);
+          els.secs.textContent = pad(Math.floor(diff / 1000) % 60);
+        }
+
+        const timer = setInterval(tick, 1000);
+        tick();
+      })();
+    </script>
   </body>
 </html>
- 
- 
