@@ -98,19 +98,19 @@ Submits a referral. Rate limited to 10 requests per 15 minutes per IP.
 
 Request body:
 
-| Field                   | Type    | Notes                                                  |
-| ----------------------- | ------- | ------------------------------------------------------ |
-| `refName`               | string  | Referrer's full name (first and last)                  |
-| `refId`                 | string  | Referrer's Kenyan ID number (7–10 digits)              |
-| `refPhone`              | string  | Referrer's Kenyan phone number                         |
-| `custName`              | string  | Customer's full name (first and last)                  |
-| `custPhone`             | string  | Customer's Kenyan phone number                         |
-| `department`            | string  | Referrer's department                                  |
+| Field                   | Type    | Notes                                              |
+| ----------------------- | ------- | -------------------------------------------------- |
+| `refName`               | string  | Referrer's full name (first and last)              |
+| `refId`                 | string  | Referrer's Kenyan ID number (7–10 digits)          |
+| `refPhone`              | string  | Referrer's Kenyan phone number                     |
+| `custName`              | string  | Customer's full name (first and last)              |
+| `custPhone`             | string  | Customer's Kenyan phone number                     |
+| `department`            | string  | Referrer's department                              |
 | `referralCode`          | string? | Optional; required if department is `customer_service` |
-| `refereeConsent`        | boolean | Referee consent                                        |
-| `privacyConsent`        | boolean | Privacy policy consent                                 |
-| `userConsent`           | boolean | User consent                                           |
-| `dataProcessingConsent` | boolean | Data processing consent                                |
+| `refereeConsent`        | boolean | Referee consent                                    |
+| `privacyConsent`        | boolean | Privacy policy consent                             |
+| `userConsent`           | boolean | User consent                                       |
+| `dataProcessingConsent` | boolean | Data processing consent                            |
 
 Before inserting, the server normalizes both phone numbers, rejects self-referrals, and checks Supabase for an existing referral with the same customer phone (in both normalized and legacy formats).
 
