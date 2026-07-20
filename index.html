@@ -171,61 +171,7 @@
         color: var(--text-sub);
         line-height: 1.55;
       }
-
-      /* ── Countdown ────────────────────────────────────────────── */
-      .countdown {
-        margin-top: 16px;
-      }
-
-      .countdown-label {
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        color: var(--yellow);
-        margin-bottom: 8px;
-      }
-
-      .countdown-timer {
-        display: flex;
-        gap: 8px;
-      }
-
-      .countdown-unit {
-        flex: 1;
-        max-width: 76px;
-        background: rgba(200, 240, 0, 0.08);
-        border: 1px solid rgba(200, 240, 0, 0.25);
-        border-radius: var(--radius-sm);
-        padding: 8px 4px;
-        text-align: center;
-      }
-
-      .countdown-value {
-        display: block;
-        font-size: 20px;
-        font-weight: 800;
-        color: var(--white);
-        font-variant-numeric: tabular-nums;
-        line-height: 1.2;
-      }
-
-      .countdown-word {
-        display: block;
-        font-size: 10px;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-        color: var(--text-sub);
-        margin-top: 2px;
-      }
-
-      .countdown-ended {
-        font-size: 13px;
-        font-weight: 700;
-        color: var(--error);
-      }
-
+ 
       /* ── Form body ────────────────────────────────────────────── */
       .card-body {
         padding: 28px;
@@ -264,7 +210,7 @@
         text-transform: uppercase;
         letter-spacing: 0.8px;
       }
-
+ 
         select,
     #userType,
 #bikeNumber {
@@ -546,7 +492,7 @@
       .success-screen.visible {
         display: flex;
       }
-
+ 
 .reward-card {
   display: flex;
   align-items: center;
@@ -554,53 +500,53 @@
   width: 100%;
   margin-top: 5px;
   padding: 12px 14px;
-
+ 
   background: linear-gradient(135deg, #f3fff0, #e8fbe2);
   border-radius: 14px;
   border: 1px solid #d4efc7;
-
+ 
   box-shadow: 0 4px 10px rgba(122, 193, 67, 0.1);
-
+ 
   font-family: "Inter", "Segoe UI", sans-serif;
 }
-
+ 
 .reward-icon {
   width: 42px;
   height: 42px;
   min-width: 42px;
-
+ 
   border-radius: 12px;
   background: linear-gradient(135deg, #7AC143, #95d46b);
-
+ 
   display: flex;
   align-items: center;
   justify-content: center;
-
+ 
   color: white;
   font-size: 20px;
-
+ 
   box-shadow: 0 3px 8px rgba(122,193,67,0.2);
 }
-
+ 
 .reward-content {
   flex: 1;
 }
-
+ 
 .reward-content h3 {
   margin: 0 0 4px;
-
+ 
   font-size: 14px;
   font-weight: 700;
-
+ 
   color: #2d5a27;
 }
-
+ 
 .reward-content p {
   margin: 0;
-
+ 
   font-size: 12px;
   line-height: 1.5;
-
+ 
   color: #557255;
 }
  
@@ -696,7 +642,7 @@
       <header class="brand-header">
         <div class="logo-lockup">
           <img
-            src="https://cdn.prod.website-files.com/66b0a72103f05e91497d72b7/66bb1585bd15bc1a5d5591cd_Spiro%20Logo%20Green.png"
+            src="https://cdn.prod.website-files.com/66b0a72103f05e91497d72b7/66bb1585bd15bc1a5d5591cd_Spiro%20Logo%20Green.png%22
             alt="Spiro"
             class="spiro-logo"
           />
@@ -706,34 +652,13 @@
       <!-- Card -->
       <div class="card">
         <!-- Hero -->
-
+ 
         <div class="card-hero">
           <div class="hero-eyebrow">Spiro Refer and earn Program</div>
           <h1><span class="accent"> Refer a Customer and Earn Instantly with Spiro</span></h1>
           <p>
             Uko na customer? Jaza details, sisi tunahandle!.
           </p>
-          <div class="countdown" id="countdown">
-            <div class="countdown-label">Offer inaisha 31 July</div>
-            <div class="countdown-timer">
-              <div class="countdown-unit">
-                <span class="countdown-value" id="cdDays">--</span>
-                <span class="countdown-word">Days</span>
-              </div>
-              <div class="countdown-unit">
-                <span class="countdown-value" id="cdHours">--</span>
-                <span class="countdown-word">Hours</span>
-              </div>
-              <div class="countdown-unit">
-                <span class="countdown-value" id="cdMins">--</span>
-                <span class="countdown-word">Mins</span>
-              </div>
-              <div class="countdown-unit">
-                <span class="countdown-value" id="cdSecs">--</span>
-                <span class="countdown-word">Secs</span>
-              </div>
-            </div>
-          </div>
         </div>
  
         <!-- Form body -->
@@ -818,19 +743,19 @@
                   >Enter a valid Kenyan phone number.</span
                 >
               </div>
-
-
+ 
+ 
                <!-- Reward Card -->
-
+ 
  
 <div class="field">
   <label for="department">
     Department <span class="required-star">*</span>
   </label>
-
+ 
   <select id="department" name="department" required>
     <option value="">Select Department</option>
-
+ 
     <option value="energy">Energy</option>
     <option value="hr_admin">HR and Admin</option>
     <option value="it">IT</option>
@@ -844,23 +769,23 @@
     <option value="marketing_pr">Marketing &amp; PR</option>
     <option value="finance">Finance</option>
 </select>
-
+ 
   <span class="hint">
     Select the department you belong to.
   </span>
-
+ 
   <span class="field-error" id="departmentErr">
     Please select a department.
   </span>
 </div>
-
-
-
+ 
+ 
+ 
 <div class="field" id="referralField" style="display:none;">
   <label for="referralCode">
     Referral Code <span class="required-star">*</span>
   </label>
-
+ 
   <input
     type="text"
     id="referralCode"
@@ -868,30 +793,30 @@
     placeholder="e.g. CX-002"
     maxlength="20"
   />
-
+ 
   <span class="field-error" id="referralCodeErr">
     Referral code is required for Customer Service.
   </span>
 </div>
-
+ 
 <div id="rewardContainer" >
-
+ 
   <div id="rewardCard" class="reward-card">
     <div class="reward-icon" id="rewardIcon">💰</div>
-
+ 
     <div class="reward-content">
       <h3 id="rewardTitle">You'll earn KSh 1,500</h3>
       <p id="rewardText">
-        You'll earn KSh 1,500 (sent via M-Pesa) once your referred customer successfully joins Spiro..
+        You'll earn KSh 1,500 (sent via M-Pesa) once your referred customer successfully joins Spiro.
       </p>
     </div>
   </div>
-
+ 
 </div>
-
+ 
    <div class="input-box" id="inputBox"></div>
-
-</div>   
+ 
+</div>  
             <div class="section-spacer"></div>
  
             <!-- Section 2: New Customer -->
@@ -950,15 +875,15 @@
                   >Enter a valid Kenyan phone number.</span
                 >
               </div>
-
-              
-
+ 
+             
+ 
             </div>
  
             <div class="section-spacer"></div>
-
-
-
+ 
+ 
+ 
             <div class="privacy-block">
               <div class="privacy-block-header">
                 <svg
@@ -986,12 +911,12 @@
                 purpose without further consent. You both have the right to
                 access, correct, or request deletion of your data at any time.
               </p>
-
+ 
 <div class="consent-row" style="margin-bottom: 12px;">
 <input type="checkbox" id="refereeConsent" name="refereeConsent" />
 <label for="refereeConsent">
   The customer is aware that you are sharing their details with Spiro
-      
+     
 </label>
 <span class="field-error" id="refereeConsentErr">
   Please confirm that the customer has agreed.
@@ -1008,7 +933,7 @@ The customer has agreed to be contacted by Spiro regarding its products and serv
   Please confirm you have read the Privacy Notice.
 </span>
 </div>
-
+ 
 <!-- Checkbox 3: User Consent -->
 <div class="consent-row" style="margin-bottom: 12px;">
   <input type="checkbox" id="userConsent" name="userConsent" />
@@ -1019,7 +944,7 @@ The customer has agreed to be contacted by Spiro regarding its products and serv
     Please confirm user consent.
   </span>
 </div>
-
+ 
 <!-- Checkbox 4: Data Processing -->
 <div class="consent-row">
   <input type="checkbox" id="dataProcessingConsent" name="dataProcessingConsent" />
@@ -1030,15 +955,15 @@ The customer has agreed to be contacted by Spiro regarding its products and serv
     Please confirm data processing consent.
   </span>
 </div>
-
+ 
 <div class="confirmation-row" style="margin-bottom: 20px; margin-left: 20px;margin-top :20px;">
   <label for="confirmation-row">
     You may request access to, correction of, or deletion of your personal data at any time,
     subject to applicable legal and regulatory requirements
   </label>
 </div>
-
-
+ 
+ 
               <div class="privacy-links">
                 <a href="mailto:dpo@spironet.com" class="privacy-link">
                   <svg
@@ -1108,7 +1033,7 @@ The customer has agreed to be contacted by Spiro regarding its products and serv
             </div>
  
            <!-- Consent -->
-
+ 
  
             <!-- Submit -->
             <p class="first-come-note" style="margin-top: 16px;"> First agent to submit customer details will be eligible for the
@@ -1145,7 +1070,7 @@ The customer has agreed to be contacted by Spiro regarding its products and serv
               Submit Referral
             </button>
  
-            
+           
           </form>
  
           <!-- Success state -->
@@ -1194,12 +1119,12 @@ The customer has agreed to be contacted by Spiro regarding its products and serv
    <script>
 (function () {
   "use strict";
-
+ 
   const form = document.getElementById("referralForm");
   const submitBtn = document.getElementById("submitBtn");
   const successDiv = document.getElementById("successScreen");
   const newBtn = document.getElementById("newReferralBtn");
-
+ 
   /* ── Validation helpers ───────────────────────────────── */
   const rules = {
     refName: {
@@ -1223,39 +1148,39 @@ The customer has agreed to be contacted by Spiro regarding its products and serv
       msg: "Enter a valid Kenyan phone number (e.g. 0712345678).",
     },
    
-
+ 
     department: {
       test: (v) => v.trim() !== "",
       msg: "Please select a department.",
     }
     ,
-
+ 
   };
-
+ 
   function showError(id, msg) {
     const el = document.getElementById(id + "Err");
     const input = document.getElementById(id);
-
+ 
     if (el) {
       el.textContent = msg;
       el.classList.add("visible");
     }
     if (input) input.classList.add("error");
   }
-
+ 
   function clearError(id) {
     const el = document.getElementById(id + "Err");
     const input = document.getElementById(id);
-
+ 
     if (el) el.classList.remove("visible");
     if (input) input.classList.remove("error");
   }
-
+ 
   /* ── Live validation ───────────────────────────────── */
   Object.keys(rules).forEach((id) => {
     const input = document.getElementById(id);
     if (!input) return;
-
+ 
     input.addEventListener("blur", () => {
       if (!rules[id].test(input.value)) {
         showError(id, rules[id].msg);
@@ -1263,39 +1188,39 @@ The customer has agreed to be contacted by Spiro regarding its products and serv
         clearError(id);
       }
     });
-
+ 
     input.addEventListener("input", () => {
       if (input.classList.contains("error") && rules[id].test(input.value)) {
         clearError(id);
       }
     });
   });
-
-
+ 
+ 
   const department = document.getElementById("department");
   const referralField = document.getElementById("referralField");
-
+ 
 department.addEventListener("change", function () {
   if (this.value === "customer_service") {
     referralField.style.display = "block";
   } else {
     referralField.style.display = "none";
-
+ 
     // IMPORTANT: clear value when hidden
     document.getElementById("referralCode").value = "";
   }
 });
-
+ 
   /* ── Submit ──────────────────────────────────────── */
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-
+ 
     let valid = true;
-
+ 
     Object.keys(rules).forEach((id) => {
       const input = document.getElementById(id);
       if (!input) return;
-
+ 
       if (!rules[id].test(input.value)) {
         showError(id, rules[id].msg);
         valid = false;
@@ -1303,9 +1228,9 @@ department.addEventListener("change", function () {
         clearError(id);
       }
     });
-
-  
-
+ 
+ 
+ 
     const refereeConsent = document.getElementById("refereeConsent");
     const refereeConsentErr = document.getElementById("refereeConsentErr");
     const privacyConsent = document.getElementById("privacyConsent");
@@ -1314,8 +1239,8 @@ department.addEventListener("change", function () {
     const dataProcessingConsent = document.getElementById("dataProcessingConsent");
     const userConsentErr = document.getElementById("userConsentErr");
     const dataProcessingConsentErr = document.getElementById("dataProcessingConsentErr");
-
-
+ 
+ 
     if (!refereeConsent.checked) {
       refereeConsent.style.outline = "2px solid var(--error)";
       refereeConsentErr.style.display = "block";
@@ -1324,7 +1249,7 @@ department.addEventListener("change", function () {
       refereeConsent.style.outline = "";
       refereeConsentErr.style.display = "none";
     }
-
+ 
     if (!privacyConsent.checked) {
       privacyConsent.style.outline = "2px solid var(--error)";
       privacyConsentErr.style.display = "block";
@@ -1333,7 +1258,7 @@ department.addEventListener("change", function () {
       privacyConsent.style.outline = "";
       privacyConsentErr.style.display = "none";
     }
-
+ 
     if (!userConsent.checked) {
          userConsent.style.outline = "2px solid var(--error)";
          userConsentErr.style.display = "block";
@@ -1342,7 +1267,7 @@ department.addEventListener("change", function () {
         userConsent.style.outline = "";
         userConsentErr.style.display = "none";
          }
-
+ 
       if (!dataProcessingConsent.checked) {
       dataProcessingConsent.style.outline = "2px solid var(--error)";
       dataProcessingConsentErr.style.display = "block";
@@ -1351,71 +1276,71 @@ department.addEventListener("change", function () {
           dataProcessingConsent.style.outline = "";
           dataProcessingConsentErr.style.display = "none";
        }
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
 const departmentValue = document.getElementById("department").value;
-
+ 
 if (departmentValue === "customer_service") {
   const referralValue = document.getElementById("referralCode").value.trim();
-
+ 
   if (!referralValue) {
     showError("referralCode", "Referral code is required for Customer Service.");
     valid = false;
   }
 }
-
+ 
     if (!valid) return;
-
+ 
     submitBtn.disabled = true;
     submitBtn.textContent = "Submitting…";
-
-
+ 
+ 
 const payload = {
   refName: document.getElementById("refName").value.trim(),
   refId: document.getElementById("refId").value.trim(),
   refPhone: document.getElementById("refPhone").value.trim(),
   department: departmentValue,
-
+ 
   referralCode:
     departmentValue === "customer_service"
       ? document.getElementById("referralCode").value.trim()
       : null,
-
+ 
   custName: document.getElementById("custName").value.trim(),
   custPhone: document.getElementById("custPhone").value.trim(),
-
+ 
   refereeConsent: refereeConsent.checked,
   privacyConsent: privacyConsent.checked,
   userConsent: document.getElementById("userConsent").checked,
   dataProcessingConsent: document.getElementById("dataProcessingConsent").checked,
-
+ 
 };
-
+ 
     const SUBMIT_LABEL = `
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
       </svg>
       Submit Referral`;
-
+ 
       console.log("🔥 referralCode element:", document.getElementById("referralCode"));
 console.log("🔥 referralCode value:", document.getElementById("referralCode")?.value);
-
+ 
     try {
       const res = await fetch("/api/referral", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-
+ 
       const data = await res.json().catch(() => ({}));
-
+ 
       if (!res.ok) {
         submitBtn.disabled = false;
         submitBtn.innerHTML = SUBMIT_LABEL;
-
+ 
         let banner = document.getElementById("submitErrBanner");
         if (!banner) {
           banner = document.createElement("p");
@@ -1424,20 +1349,20 @@ console.log("🔥 referralCode value:", document.getElementById("referralCode")?
             "color:#FF4D4F;font-size:13px;text-align:center;margin-top:12px;";
           submitBtn.insertAdjacentElement("afterend", banner);
         }
-
+ 
         banner.textContent =
           data.error || "Submission failed. Please try again.";
         return;
       }
-
+ 
       form.style.display = "none";
       successDiv.classList.add("visible");
       successDiv.scrollIntoView({ behavior: "smooth" });
-
+ 
     } catch (err) {
       submitBtn.disabled = false;
       submitBtn.innerHTML = SUBMIT_LABEL;
-
+ 
       let banner = document.getElementById("submitErrBanner");
       if (!banner) {
         banner = document.createElement("p");
@@ -1446,60 +1371,29 @@ console.log("🔥 referralCode value:", document.getElementById("referralCode")?
           "color:#FF4D4F;font-size:13px;text-align:center;margin-top:12px;";
         submitBtn.insertAdjacentElement("afterend", banner);
       }
-
+ 
       banner.textContent = "Connection error. Please try again.";
     }
   });
-
+ 
   /* ── Reset ──────────────────────────────────────── */
   newBtn.addEventListener("click", () => {
     form.reset();
     Object.keys(rules).forEach((id) => clearError(id));
-
+ 
     submitBtn.disabled = false;
     submitBtn.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
       </svg>
       Submit Referral`;
-
+ 
     successDiv.classList.remove("visible");
     form.style.display = "";
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
-
-})();
-
-/* ── Countdown to 31 July ─────────────────────────────────── */
-(() => {
-  const deadline = new Date("2026-07-31T23:59:59+03:00").getTime();
-  const els = {
-    days: document.getElementById("cdDays"),
-    hours: document.getElementById("cdHours"),
-    mins: document.getElementById("cdMins"),
-    secs: document.getElementById("cdSecs"),
-  };
-  const pad = (n) => String(n).padStart(2, "0");
-
-  function tick() {
-    const diff = deadline - Date.now();
-    if (diff <= 0) {
-      document.getElementById("countdown").innerHTML =
-        '<div class="countdown-ended">Offer imeisha!</div>';
-      clearInterval(timer);
-      return;
-    }
-    els.days.textContent = pad(Math.floor(diff / 86400000));
-    els.hours.textContent = pad(Math.floor(diff / 3600000) % 24);
-    els.mins.textContent = pad(Math.floor(diff / 60000) % 60);
-    els.secs.textContent = pad(Math.floor(diff / 1000) % 60);
-  }
-
-  const timer = setInterval(tick, 1000);
-  tick();
+ 
 })();
 </script>
   </body>
 </html>
- 
- 
